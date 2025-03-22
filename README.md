@@ -14,7 +14,7 @@ git clone https://github.com/Zorbiks/TheseBM C:/xampp/htdocs/TheseBM
 git clone https://github.com/Zorbiks/TheseBM
 ```
 
-**Note**: For GNU/Linux make sure that you change the DocumentRoot option located in /opt/lampp/etc/httpd.conf to another directory otherwise root permission is required
+**Note**: For GNU/Linux make sure that you change the ```DocumentRoot``` option located in ```/opt/lampp/etc/httpd.conf``` to another directory otherwise root permission is required
 
 **Example**
 ```
