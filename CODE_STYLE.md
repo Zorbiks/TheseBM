@@ -126,3 +126,12 @@ let name = "Raoul Shehab";
 let age = 21;
 const PI = 3.14;
 ```
+
+#### Naming Convention 
+Use camel case with variable names containing multiple words. 
+
+**Example (Correct)** 
+```javascript
+const sidebarMenuButton = ...;
+function toggleActiveClass(sidebarMenuButton) {...}
+```
