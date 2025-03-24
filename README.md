@@ -5,13 +5,13 @@ To get started with the development, install XAMPP and copy the repository to th
 **Windows**
 
 ```
-git clone https://github.com/Zorbiks/TheseBM C:/xampp/htdocs/TheseBM
+git clone git@github.com:Zorbiks/TheseBM.git C:/xampp/htdocs/TheseBM
 ```
 
 **GNU/Linux**
 
 ```
-git clone https://github.com/Zorbiks/TheseBM
+git clone git@github.com:Zorbiks/TheseBM.git
 ```
 
 **Note**: For GNU/Linux make sure that you change the ```DocumentRoot``` option located in ```/opt/lampp/etc/httpd.conf``` to another directory otherwise root permission is required
@@ -26,24 +26,3 @@ git clone https://github.com/Zorbiks/TheseBM
 DocumentRoot "/home/user/www"
 <Directory "/home/user/www">
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
