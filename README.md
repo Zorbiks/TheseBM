@@ -1,6 +1,6 @@
 # TheseBM
 
-To get started with the development, install XAMPP and copy the repository to the root folder
+To get started with the development, install [XAMPP](https://www.apachefriends.org/download.html) and copy the repository to the root folder
 
 **Windows**
 
