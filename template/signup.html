@@ -3,11 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/libs/fontawesome-6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/libs/fontawesome-6.7.2/css/fontawesome.min.css">
     <!-- Loading Bootstrap -->
     <link rel="stylesheet" href="assets/libs/bootstrap-5.3.3/css/bootstrap.min.css">
     <script src="assets/libs/bootstrap-5.3.3/js/bootstrap.min.js" defer></script>
     <title>ThèseBM - S'inscrire</title>
 </head>
 <body>
+    <nav class="navbar bg-body-tertiary shadow">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/images/logo.png" alt="Bootstrap" height="24">
+            </a>
+        </div>
+    </nav>
+    <main>
+        <div class="container d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 56px);">
+            <form class="p-4 border rounded shadow" style="width: 350px;" method="POST">
+                <div class="mb-3">
+                    <label for="firstname" class="form-label">Prénom</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname">
+                </div>
+                <div class="mb-3">
+                    <label for="lastname" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="lastname" name="lastname">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">E-mail</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mot de passe</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <div class="mb-3">
+                    <label for="repeatpassword" class="form-label">Repeter mot de passe</label>
+                    <input type="password" class="form-control" id="repeatpassword" name="repeatpassword">
+                </div>
+                <button type="submit" class="w-100 btn btn-primary"><i class="fa-solid fa-arrow-right-to-bracket fa-fw"></i> S'inscrire</button>
+            </form>
+        </div>
+    </main>
 </body>
 </html>
