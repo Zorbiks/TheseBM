@@ -5,3 +5,12 @@ nav a.active {
     border-radius: var(--bs-border-radius) !important;
     --bs-border-opacity: 1;
 }
+
+main .container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+main .journal .event:not(:last-child) {
+    border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+}
