@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/libs/fontawesome-6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/libs/fontawesome-6.7.2/css/fontawesome.min.css">
+    <!-- Loading Bootstrap -->
+    <link rel="stylesheet" href="assets/libs/bootstrap-5.3.3/css/bootstrap.min.css">
+    <script src="assets/libs/bootstrap-5.3.3/js/bootstrap.min.js" defer></script>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/main.css">
+    <title>ThèseBM - Connexion</title>
+</head>
+<body>
+    <div class="d-flex">
+        <div class="flex-shrink-0">
+            <nav class="d-flex flex-column justify-content-between vh-100 z-1 position-relative bg-body-tertiary shadow px-3 pt-5">
+                <ul class="list-unstyled pt-5">
+                    <li class="mb-2">
+                        <a class="d-block px-3 py-1 text-decoration-none text-dark fw-bold fs-5" href="dashboard.html">
+                            <i class="fa-solid fa-gauge-high fa-fw"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a class="d-block px-3 py-1 text-decoration-none text-dark fw-bold fs-5" href="thesards.html">
+                            <i class="fa-solid fa-users fa-fw"></i>
+                            Thésards
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a class="active d-block px-3 py-1 text-decoration-none text-dark fw-bold fs-5"
+                            href="publications.html">
+                            <i class="fa-solid fa-book fa-fw"></i>
+                            Publications
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a class="d-block px-3 py-1 text-decoration-none text-dark fw-bold fs-5"
+                            href="thesards-management.html">
+                            <i class="fa-solid fa-database fa-fw"></i>
+                            Gestion des Thésards
+                        </a>
+                    </li>
+                </ul>
+                <a class="px-3 py-1 text-decoration-none text-dark fw-bold fs-5" href="#">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    Déconnexion
+                </a>
+            </nav>
+        </div>
+        <div class="flex-grow-1">
+            <header class="navbar bg-body-tertiary shadow">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img src="assets/images/logo.png" alt="Bootstrap" height="26">
+                    </a>
+                    <div class="welcome-message">
+                        Bonjour <span class="fw-bold">Prénom Nom</span>!
+                    </div>
+                </div>
+            </header>
+            <main>
+                <div class="container">
+                    <div>
+                        <h3>Publications</h3>
+                        <button type="button" class="btn btn-primary mb-2">
+                            <i class="fa-solid fa-user-plus fa-fw"></i>
+                            Exporter
+                        </button>
+                        <div class="table-responsive">
+                            <table class="table table-striped text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th class="bg-primary text-light">Référence</th>
+                                        <th class="bg-primary text-light">Titre</th>
+                                        <th class="bg-primary text-light">Auteurs</th>
+                                        <th class="bg-primary text-light">Numéro</th>
+                                        <th class="bg-primary text-light">Date</th>
+                                        <th class="bg-primary text-light">Lieu</th>
+                                        <th class="bg-primary text-light">DOI</th>
+                                        <th class="bg-primary text-light">Type</th>
+                                        <th class="bg-primary text-light">Soumis Par</th>
+                                        <th class="bg-primary text-light">Attestation</th>
+                                        <th class="bg-primary text-light">Publication</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle">
+                                    <tr>
+                                        <td>001</td>
+                                        <td>Analyse des tendances du marché numérique</td>
+                                        <td>Dupont, Martin, Leblanc</td>
+                                        <td>2023-01</td>
+                                        <td>15/04/2023</td>
+                                        <td>Paris, France</td>
+                                        <td>10.1234/abcd.efg.hijk</td>
+                                        <td>Recherche</td>
+                                        <td>Oussama Elmehdi</td>
+                                        <td>
+                                            <a class="btn btn-success" href="#"><i
+                                                    class="fa-solid fa-download fa-fw"></i> Télécharger</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-success" href="#"><i
+                                                    class="fa-solid fa-download fa-fw"></i> Télécharger</a>
+                                            <a class="btn btn-primary" href="#"><i class="fa-solid fa-eye fw-fa"></i>
+                                                Consulter</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

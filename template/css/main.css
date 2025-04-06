@@ -14,3 +14,8 @@ main .container {
 main .journal .event:not(:last-child) {
     border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
 }
+
+/* Fix overflow */
+.flex-grow-1 {
+    min-width: 0;
+}
