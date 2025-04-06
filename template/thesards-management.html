@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/libs/fontawesome-6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/libs/fontawesome-6.7.2/css/fontawesome.min.css">
+    <!-- Loading Bootstrap -->
+    <link rel="stylesheet" href="assets/libs/bootstrap-5.3.3/css/bootstrap.min.css">
+    <script src="assets/libs/bootstrap-5.3.3/js/bootstrap.min.js" defer></script>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/main.css">
+    <title>ThèseBM - Connexion</title>
+</head>
+<body>
+    <div class="d-flex">
+        <div>
+            <nav class="d-flex flex-column justify-content-between vh-100 z-1 position-relative bg-body-tertiary shadow px-3 pt-5">
+                <ul class="list-unstyled pt-5">
+                    <li class="mb-2">
+                        <a class="d-block px-3 py-1 text-decoration-none text-dark fw-bold fs-5" href="dashboard.html">
+                            <i class="fa-solid fa-gauge-high fa-fw"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a class="d-block px-3 py-1 text-decoration-none text-dark fw-bold fs-5" href="thesards.html">
+                            <i class="fa-solid fa-users fa-fw"></i>
+                            Thésards
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a class="d-block px-3 py-1 text-decoration-none text-dark fw-bold fs-5" href="publications.html">
+                            <i class="fa-solid fa-book fa-fw"></i>
+                            Publications
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a class="active d-block px-3 py-1 text-decoration-none text-dark fw-bold fs-5" href="thesards-management.html">
+                            <i class="fa-solid fa-database fa-fw"></i>
+                            Gestion des Thésards
+                        </a>
+                    </li>
+                </ul>
+                <a class="px-3 py-1 text-decoration-none text-dark fw-bold fs-5" href="#">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    Déconnexion
+                </a>
+            </nav>
+        </div>
+        <div class="flex-grow-1">
+            <header class="navbar bg-body-tertiary shadow">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img src="assets/images/logo.png" alt="Bootstrap" height="26">
+                    </a>
+                    <div class="welcome-message">
+                        Bonjour <span class="fw-bold">Prénom Nom</span>!
+                    </div>
+                </div>
+            </header>
+            <main>
+                <div class="container">
+                    <div class="mb-5">
+                        <h3>Gestion des Thésards</h3>
+                        <p>les demandes d'Inscription</p>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="bg-primary text-light">Prénom</th>
+                                    <th class="bg-primary text-light">Nom</th>
+                                    <th class="bg-primary text-light">E-mail</th>
+                                    <th class="bg-primary text-light">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="align-middle">
+                                <tr>
+                                    <td>Oussama</td>
+                                    <td>Elmehdi</td>
+                                    <td>email.01@gmail.com</td>
+                                    <td>
+                                        <a class="btn btn-success" href="#"><i class="fa-solid fa-check fw-fa"></i> Accepter</a>
+                                        <a class="btn btn-danger" href="#"><i class="fa-solid fa-xmark fw-fa"></i> Rejeter</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <p>Les thésards dans la Platforme</p>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addThesardModal">
+                            <i class="fa-solid fa-user-plus fa-fw"></i>
+                            Ajouter thésard
+                        </button>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="bg-primary text-light">Prénom</th>
+                                    <th class="bg-primary text-light">Nom</th>
+                                    <th class="bg-primary text-light">E-mail</th>
+                                    <th class="bg-primary text-light">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="align-middle">
+                                <tr>
+                                    <td>Oussama</td>
+                                    <td>Elmehdi</td>
+                                    <td>email.01@gmail.com</td>
+                                    <td>
+                                        <a class="btn btn-danger" href="#"><i class="fa-solid fa-trash-can fw-fa"></i> Supprimer</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- Modal -->
+                        <div class="modal fade" id="addThesardModal" tabindex="-1" aria-labelledby="addThesardModal" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter Thésard</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form>
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <label for="firstname" class="form-label">Prénom</label>
+                                                <input type="text" class="form-control" id="firstname" name="firstname">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="lastname" class="form-label">Nom</label>
+                                                <input type="text" class="form-control" id="lastname" name="lastname">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">E-mail</label>
+                                                <input type="email" class="form-control" id="email" name="email">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="password" class="form-label">Mot de passe</label>
+                                                <input type="password" class="form-control" id="password" name="password">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
