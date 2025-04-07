@@ -1,3 +1,26 @@
+/* Customizing Colors */
+:root {
+  --bs-blue: #285694;
+  --bs-primary: #285694;
+  --bs-primary-rgb: 40, 86, 148;
+  --bs-link-color: #285694;
+  --bs-link-color-rgb: 40, 86, 148;
+  --bs-link-hover-color: #204476;
+  --bs-link-hover-color-rgb: 32, 68, 118;
+}
+
+.btn-primary {
+    --bs-btn-bg: #285694;
+    --bs-btn-border-color: #285694;
+    --bs-btn-hover-bg: #204476;
+    --bs-btn-hover-border-color: #204476;
+    --bs-btn-focus-shadow-rgb: 32, 68, 118;
+    --bs-btn-active-bg: #204476;
+    --bs-btn-active-border-color: #204476;
+    --bs-btn-disabled-bg: #285694;
+    --bs-btn-disabled-border-color: #285694;
+}
+
 nav a.active {
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
     border-width: 3px !important;
