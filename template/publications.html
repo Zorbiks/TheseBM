@@ -67,10 +67,25 @@
                 <div class="container">
                     <div>
                         <h3>Publications</h3>
-                        <button type="button" class="btn btn-primary mb-2">
-                            <i class="fa-solid fa-user-plus fa-fw"></i>
-                            Exporter
-                        </button>
+                        <div class="d-flex gap-5 justify-content-end">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addPublicationModal">
+                                <i class="fa-solid fa-plus fa-fw"></i>
+                                Ajouter publication
+                            </button>
+                            <button type="button" class="btn btn-primary mb-2">
+                                <i class="fa-solid fa-file-export fa-fw"></i>
+                                Exporter
+                            </button>
+                            <form>
+                                <div class="d-flex gap-2">
+                                    <input type="text" class="form-control" name="search" placeholder="Rechercher">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa-solid fa-magnifying-glass fa-fw"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-striped text-nowrap">
                                 <thead>
@@ -86,6 +101,7 @@
                                         <th class="bg-primary text-light">Soumis Par</th>
                                         <th class="bg-primary text-light">Attestation</th>
                                         <th class="bg-primary text-light">Publication</th>
+                                        <th class="bg-primary text-light">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody class="align-middle">
@@ -100,18 +116,102 @@
                                         <td>Recherche</td>
                                         <td>Oussama Elmehdi</td>
                                         <td>
-                                            <a class="btn btn-success" href="#"><i
-                                                    class="fa-solid fa-download fa-fw"></i> Télécharger</a>
+                                            <a class="btn btn-success" href="#">
+                                                <i class="fa-solid fa-download fa-fw"></i>
+                                                Télécharger
+                                            </a>
                                         </td>
                                         <td>
-                                            <a class="btn btn-success" href="#"><i
-                                                    class="fa-solid fa-download fa-fw"></i> Télécharger</a>
-                                            <a class="btn btn-primary" href="#"><i class="fa-solid fa-eye fw-fa"></i>
-                                                Consulter</a>
+                                            <a class="btn btn-success" href="#">
+                                                <i class="fa-solid fa-download fa-fw"></i>
+                                                Télécharger
+                                            </a>
+                                            <a class="btn btn-primary" href="#">
+                                                <i class="fa-solid fa-eye fa-fw"></i>
+                                                Consulter
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-secondary" href="#">
+                                                <i class="fa-solid fa-pen fa-fw"></i>
+                                                Modifier
+                                            </a>
+                                            <a class="btn btn-danger" href="#">
+                                                <i class="fa-solid fa-trash-can fa-fw"></i>
+                                                Supprimer
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="addPublicationModal" tabindex="-1" aria-labelledby="addPublicationModal" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="addPublicationModalLabel">Ajouter Publication</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form>
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <label for="reference" class="form-label">Référence</label>
+                                                <input type="text" class="form-control" id="reference" name="reference">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="title" class="form-label">Titre</label>
+                                                <input type="text" class="form-control" id="title" name="title">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="authors" class="form-label">Auteurs</label>
+                                                <input type="text" class="form-control" id="authors" name="authors">
+                                            </div>
+                                            <div class="d-flex gap-3 mb-3">
+                                                <div class="flex-grow-1">
+                                                    <label for="number" class="form-label">Numéro</label>
+                                                    <input type="number" class="form-control" id="number" name="number" min="1" max="999999">
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <label for="date" class="form-label">Date</label>
+                                                    <input type="date" class="form-control" id="date" name="date">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="location" class="form-label">Lieu</label>
+                                                <input type="text" class="form-control" id="location" name="location">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="doi" class="form-label">DOI</label>
+                                                <input type="text" class="form-control" id="doi" name="doi">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="type" class="form-label">Type</label>
+                                                <select class="form-select" id="type" name="type" aria-label="Default select example">
+                                                    <option selected disabled>Sélectionnez un type</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="attestation" class="form-label">Attestation</label>
+                                                <input type="file" class="form-control" id="attestation" name="attestation">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="publication" class="form-label">Publication</label>
+                                                <input type="file" class="form-control" id="publication" name="publication">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
