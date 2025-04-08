@@ -6,7 +6,6 @@
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="assets/libs/fontawesome-6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="assets/libs/fontawesome-6.7.2/css/fontawesome.min.css">
     <!-- Loading Bootstrap -->
     <link rel="stylesheet" href="assets/libs/bootstrap-5.3.3/css/bootstrap.min.css">
     <script src="assets/libs/bootstrap-5.3.3/js/bootstrap.min.js" defer></script>
@@ -20,33 +19,31 @@
             <nav class="d-flex flex-column justify-content-between vh-100 z-1 position-relative bg-body-tertiary shadow px-3 pt-5">
                 <ul class="list-unstyled pt-5">
                     <li class="mb-2">
-                        <a class="d-block px-3 py-1 text-decoration-none text-dark fw-bold fs-5" href="dashboard.html">
+                        <a class="d-block px-3 py-1 text-decoration-none text-dark fw-bold" href="dashboard.html">
                             <i class="fa-solid fa-gauge-high fa-fw"></i>
                             Dashboard
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a class="d-block px-3 py-1 text-decoration-none text-dark fw-bold fs-5" href="thesards.html">
+                        <a class="d-block px-3 py-1 text-decoration-none text-dark fw-bold" href="thesards.html">
                             <i class="fa-solid fa-users fa-fw"></i>
                             Thésards
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a class="active d-block px-3 py-1 text-decoration-none text-dark fw-bold fs-5"
-                            href="publications.html">
+                        <a class="active d-block px-3 py-1 text-decoration-none text-dark fw-bold" href="publications.html">
                             <i class="fa-solid fa-book fa-fw"></i>
                             Publications
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a class="d-block px-3 py-1 text-decoration-none text-dark fw-bold fs-5"
-                            href="thesards-management.html">
+                        <a class="d-block px-3 py-1 text-decoration-none text-dark fw-bold" href="thesards-management.html">
                             <i class="fa-solid fa-database fa-fw"></i>
                             Gestion des Thésards
                         </a>
                     </li>
                 </ul>
-                <a class="px-3 py-1 text-decoration-none text-dark fw-bold fs-5" href="#">
+                <a class="px-3 py-1 text-decoration-none text-dark fw-bold" href="#">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     Déconnexion
                 </a>
@@ -207,8 +204,14 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                <i class="fa-solid fa-xmark"></i>
+                                                Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa-solid fa-floppy-disk"></i>
+                                                Save changes
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
