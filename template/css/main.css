@@ -30,3 +30,7 @@ main .journal .event:not(:last-child) {
 .flex-grow-1 {
     min-width: 0;
 }
+
+.main-content-wrapper {
+    padding-left: 259.33px;
+}
