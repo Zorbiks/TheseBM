@@ -106,12 +106,14 @@
                                         <th class="bg-primary text-light">Titre</th>
                                         <th class="bg-primary text-light">Auteurs</th>
                                         <th class="bg-primary text-light">Numéro</th>
+                                        <th class="bg-primary text-light">Volume</th>
                                         <th class="bg-primary text-light">Date</th>
                                         <th class="bg-primary text-light">Lieu</th>
                                         <th class="bg-primary text-light">DOI</th>
                                         <th class="bg-primary text-light">Type</th>
                                         <th class="bg-primary text-light">Soumis Par</th>
                                         <th class="bg-primary text-light">Attestation</th>
+                                        <th class="bg-primary text-light">Rapport</th>
                                         <th class="bg-primary text-light">Publication</th>
                                         <th class="bg-primary text-light">Actions</th>
                                     </tr>
@@ -121,12 +123,63 @@
                                         <td>001</td>
                                         <td>Analyse des tendances du marché numérique</td>
                                         <td>Dupont, Martin, Leblanc</td>
-                                        <td>2023-01</td>
+                                        <td>4</td>
+                                        <td>-</td>
                                         <td>15/04/2023</td>
                                         <td>Paris, France</td>
                                         <td>10.1234/abcd.efg.hijk</td>
-                                        <td>Recherche</td>
+                                        <td>Communication</td>
                                         <td>Oussama Elmehdi</td>
+                                        <td>
+                                            <a class="btn btn-success" href="#">
+                                                <i class="fa-solid fa-download fa-fw"></i>
+                                                Télécharger
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-success" href="#">
+                                                <i class="fa-solid fa-download fa-fw"></i>
+                                                Télécharger
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-success" href="#">
+                                                <i class="fa-solid fa-download fa-fw"></i>
+                                                Télécharger
+                                            </a>
+                                            <a class="btn btn-primary" href="#">
+                                                <i class="fa-solid fa-eye fa-fw"></i>
+                                                Consulter
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-secondary" href="#">
+                                                <i class="fa-solid fa-pen fa-fw"></i>
+                                                Modifier
+                                            </a>
+                                            <a class="btn btn-danger" href="#">
+                                                <i class="fa-solid fa-trash-can fa-fw"></i>
+                                                Supprimer
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>021</td>
+                                        <td>Analyse des tendances du marché numérique</td>
+                                        <td>Martin, Leblanc</td>
+                                        <td>2</td>
+                                        <td>1</td>
+                                        <td>15/04/2023</td>
+                                        <td>London, United Kingdom</td>
+                                        <td>10.1234/abcd.efg.hijk</td>
+                                        <td>Journal</td>
+                                        <td>Oussama Elmehdi</td>
+                                        <td>
+                                            <a class="btn btn-success" href="#">
+                                                <i class="fa-solid fa-download fa-fw"></i>
+                                                Télécharger
+                                            </a>
+                                        </td>
                                         <td>
                                             <a class="btn btn-success" href="#">
                                                 <i class="fa-solid fa-download fa-fw"></i>
@@ -157,7 +210,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- Modal -->
+                        <!-- Start Modal -->
                         <div class="modal fade" id="addPublicationModal" tabindex="-1" aria-labelledby="addPublicationModal" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -179,16 +232,6 @@
                                                 <label for="authors" class="form-label">Auteurs</label>
                                                 <input type="text" class="form-control" id="authors" name="authors">
                                             </div>
-                                            <div class="d-flex gap-3 mb-3">
-                                                <div class="flex-grow-1">
-                                                    <label for="number" class="form-label">Numéro</label>
-                                                    <input type="number" class="form-control" id="number" name="number" min="1" max="999999">
-                                                </div>
-                                                <div class="flex-grow-1">
-                                                    <label for="date" class="form-label">Date</label>
-                                                    <input type="date" class="form-control" id="date" name="date">
-                                                </div>
-                                            </div>
                                             <div class="mb-3">
                                             </div>
                                             <div class="mb-3">
@@ -199,15 +242,30 @@
                                                 <label for="doi" class="form-label">DOI</label>
                                                 <input type="text" class="form-control" id="doi" name="doi">
                                             </div>
+                                            <div class="flex-grow-1">
+                                                <label for="date" class="form-label">Date</label>
+                                                <input type="date" class="form-control" id="date" name="date">
+                                            </div>
                                             <div class="mb-3">
                                                 <label for="type" class="form-label">Type</label>
-                                                <select class="form-select" id="type" name="type" aria-label="Default select example">
+                                                <select class="form-select" id="type" name="type">
                                                     <option selected disabled>Sélectionnez un type</option>
                                                     <option value="Publication">Publication</option>
                                                     <option value="Communication">Communication</option>
                                                     <option value="Conférence">Conférence</option>
                                                     <option value="Chapitre">Chapitre</option>
+                                                    <option value="Journal">Journal</option>
                                                 </select>
+                                            </div>
+                                            <div class="d-flex gap-3 mb-3">
+                                                <div class="flex-grow-1">
+                                                    <label for="number" class="form-label">Numéro</label>
+                                                    <input type="number" class="form-control" id="number" name="number" min="1" max="999999">
+                                                </div>
+                                                <div class="flex-grow-1" id="volume-wrapper">
+                                                    <label for="volume" class="form-label">Volume</label>
+                                                    <input type="number" class="form-control" id="volume" name="volume" min="1" max="999999">
+                                                </div>                                                
                                             </div>
                                             <div class="mb-3">
                                                 <label for="attestation" class="form-label">Attestation</label>
@@ -231,7 +289,26 @@
                                     </form>
                                 </div>
                             </div>
+                            <script>
+                                const volumeInput = document.getElementById('volume');
+                                const volumeWrapper = document.getElementById('volume-wrapper');
+                                const selectType = document.getElementById('type');
+
+                                volumeWrapper.style.display = 'none';
+
+                                selectType.addEventListener('change', function() {
+                                    if (selectType.value === 'Journal') {
+                                        volumeInput.removeAttribute('disabled');
+                                        volumeWrapper.style.display = 'block';
+                                    } else {
+                                        volumeInput.setAttribute('disabled', '');
+                                        volumeWrapper.style.display = 'none';
+                                    }
+                                })
+
+                            </script>
                         </div>
+                        <!-- End Modal -->
                     </div>
                 </div>
             </main>
