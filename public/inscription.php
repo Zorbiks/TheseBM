@@ -22,8 +22,15 @@
         </div>
     </header>
     <main>
+        <!-- Start Popup Render -->
+        <?php
+            include_once("classes/views/signup_view.class.php");
+            $view = new SignupView();
+            $view->renderErrorPopup();
+        ?>
+        <!-- End Popup Render -->
         <div class="container d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 56px);">
-            <form class="p-4 border rounded shadow" style="width: 350px;" method="POST">
+            <form class="p-4 border rounded shadow" style="width: 350px;" method="POST" action="includes/signup.inc.php">
                 <h4 class="text-center mb-3">S'inscrire</h4>
                 <div class="form-floating mb-3">
                     <input class="form-control" id="firstname" type="text" name="firstname" placeholder="Prénom">
@@ -42,10 +49,10 @@
                     <label class="form-label" for="password">Mot de passe</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input class="form-control" id="repeatpassword" type="password" name="repeatpassword" placeholder="Repeter mot de passe">
-                    <label class="form-label" for="repeatpassword">Repeter mot de passe</label>
+                    <input class="form-control" id="passwordrepeat" type="password" name="passwordrepeat" placeholder="Repeter mot de passe">
+                    <label class="form-label" for="passwordrepeat">Repeter mot de passe</label>
                 </div>
-                <button class="w-100 btn btn-primary" type="submit">
+                <button class="w-100 btn btn-primary" type="submit" name="submit" value="signup">
                     <i class="fa-solid fa-arrow-right-to-bracket fa-fw"></i>
                     S'inscrire
                 </button>
