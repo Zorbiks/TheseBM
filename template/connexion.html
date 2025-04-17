@@ -25,15 +25,15 @@
         <div class="container d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 56px);">
             <form class="p-4 border rounded shadow" style="width: 350px;" method="POST">
                 <h4 class="text-center mb-3">S'authentifier</h4>
-                <div class="mb-3">
-                    <label for="email" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" id="email" name="email">
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="email" type="email" name="email" placeholder="E-mail">
+                    <label class="form-label" for="email">E-mail</label>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Mot de passe</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="password" type="password" name="password" placeholder="Mot de passe">
+                    <label class="form-label" for="password">Mot de passe</label>
                 </div>
-                <button type="submit" class="w-100 btn btn-primary">
+                <button class="w-100 btn btn-primary" type="submit">
                     <i class="fa-solid fa-arrow-right-to-bracket fa-fw"></i>
                     Se connecter
                 </button>
