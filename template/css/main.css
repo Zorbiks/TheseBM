@@ -32,5 +32,11 @@ main .journal .event:not(:last-child) {
 }
 
 .main-content-wrapper {
-    padding-left: 259.33px;
+    padding-left: 80px;
+}
+
+@media (min-width: 767px) {
+    .main-content-wrapper {
+        padding-left: 259.33px;
+    }
 }
