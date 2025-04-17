@@ -1,0 +1,19 @@
+.hero-wrapper {
+    background-color: rgba(0, 0, 0, .75);
+    background-image: url('../assets/images/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0% 50%;
+    background-blend-mode: darken;
+    min-height: 80vh;
+}
+
+article a {
+    color: #fff;
+    transition: background .25s, color .25s;
+}
+
+article a:hover {
+    color: #000;
+    background-color: #fff;
+}
