@@ -11,8 +11,7 @@ class SignupModel extends Dbh {
 
             // Close the connection and stop the script on failure
             if (!$stmt->execute([$firstName, $lastName, $email, $hashedPassword])) {
-                $stmt = null;
-                exit();
+                throw new Exception("Database query execution failed.");
             }
         } catch (PDOException $e) {
             echo $e;
@@ -27,8 +26,7 @@ class SignupModel extends Dbh {
 
             // Close the connection and stop the script on failure
             if (!$stmt->execute([$email])) {
-                $stmt = null;
-                exit();
+                throw new Exception("Database query execution failed.");
             }
 
             if ($stmt->rowCount() === 1) {
