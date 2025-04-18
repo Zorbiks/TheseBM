@@ -1,10 +1,4 @@
-<?php
-    session_start();
-    if (empty($_SESSION["id"]) || empty($_SESSION["firstName"]) || empty($_SESSION["lastName"]) || empty($_SESSION["role"])) {
-        header("location: index.html");
-        exit();
-    }
-?>
+<?php include_once("includes/checklogin.inc.php") ?>
 
 <!DOCTYPE html>
 <html lang="fr">

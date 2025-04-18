@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    
+    if (isset($_SESSION["id"], $_SESSION["firstName"], $_SESSION["lastName"], $_SESSION["role"])) {
+        header("location: dashboard.php");
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,7 +25,7 @@
 <body>
     <header class="navbar bg-body-tertiary shadow">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.html">
                 <img src="assets/images/logo.png" alt="Bootstrap" height="26">
             </a>
         </div>
@@ -52,7 +61,8 @@
                     <input class="form-control" id="passwordrepeat" type="password" name="passwordrepeat" placeholder="Repeter mot de passe">
                     <label class="form-label" for="passwordrepeat">Repeter mot de passe</label>
                 </div>
-                <button class="w-100 btn btn-primary" type="submit" name="submit" value="signup">
+                <a class="small" href="connexion.php">Vous avez déjà un compte?</a>
+                <button class="w-100 mt-1 btn btn-primary" type="submit" name="submit" value="signup">
                     <i class="fa-solid fa-arrow-right-to-bracket fa-fw"></i>
                     S'inscrire
                 </button>
