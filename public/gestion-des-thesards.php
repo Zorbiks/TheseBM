@@ -25,28 +25,7 @@
                             <i class="fa-solid fa-user-plus fa-fw"></i>
                             Ajouter thésard
                         </button>
-                        <div class="table-responsive">
-                            <table class="table table-striped text-nowrap">
-                                <thead>
-                                    <tr>
-                                        <th class="bg-primary text-light">Prénom</th>
-                                        <th class="bg-primary text-light">Nom</th>
-                                        <th class="bg-primary text-light">E-mail</th>
-                                        <th class="bg-primary text-light">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="align-middle">
-                                    <tr>
-                                        <td>Oussama</td>
-                                        <td>Elmehdi</td>
-                                        <td>email.01@gmail.com</td>
-                                        <td>
-                                            <a class="btn btn-danger" href="#"><i class="fa-solid fa-trash-can fw-fa"></i> Supprimer</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+
                         <!-- Modal -->
                         <div class="modal fade" id="addThesardModal" tabindex="-1" aria-labelledby="addThesardModal" aria-hidden="true">
                             <div class="modal-dialog">
@@ -88,6 +67,16 @@
                                 </div>
                             </div>
                         </div>
+
+                        <?php
+                            include_once("classes/models/dbh.class.php");
+                            include_once("classes/models/thesards_mgr_model.class.php");
+                            include_once("classes/views/thesards_mgr_view.class.php");
+                            $view = new ThesardsMgrView();
+                            $view->renderThesardsTable();
+                            $view->renderErrorPopup();
+                        ?>
+                        
                     </div>
                 </div>
             </main>
