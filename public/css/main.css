@@ -15,13 +15,11 @@ nav a:not(.active) {
 
 nav {
     background-color: #0c1e33;
-    width: 259.33px;
 }
 
 main .container {
     padding-top: 1rem;
     padding-bottom: 1rem;
-    
 }
 
 main .journal .event:not(:last-child) {
