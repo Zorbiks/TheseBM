@@ -1,28 +1,12 @@
 <?php include_once("includes/checklogin.inc.php") ?>
+<?php include_once("includes/components/head.html") ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/libs/fontawesome-6.7.2/css/all.min.css">
-    <!-- Fonts -->
-    <link rel="stylesheet" href="assets/fonts/Ubuntu/stylesheet.css">
-    <!-- Loading Bootstrap -->
-    <link rel="stylesheet" href="assets/libs/bootstrap-custom/css/bootstrap.css">
-    <script src="assets/libs/bootstrap-custom/node_modules/bootstrap/dist/js/bootstrap.min.js" defer></script>
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="css/main.css">
-    <!-- Main JS Script -->
-     <script src="js/main.js" defer></script>
-    <title>ThèseBM - Dashboard</title>
+<title>ThèseBM - Dashboard</title>
 </head>
 <body>
     <div class="d-flex">
         <!-- Sidebar Navigation -->
-        <?php include_once("includes/components/navbar.html") ?>
+        <?php include_once("includes/components/navbar.php") ?>
 
         <div class="flex-grow-1 main-content-wrapper">
             <!-- Header -->

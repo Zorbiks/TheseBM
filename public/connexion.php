@@ -2,7 +2,11 @@
     session_start();
     
     if (isset($_SESSION["id"], $_SESSION["firstName"], $_SESSION["lastName"], $_SESSION["role"])) {
-        header("location: dashboard.php");
+        if ($_SESSION["role"] === "professeur") {
+            header("location: dashboard.php");
+        } elseif ($_SESSION["role"] === "thesard") {
+            header("location: publications.php");
+        }
         exit();
     }
 ?>

@@ -16,6 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"]) && $_POST["
     // Run error handling and login the user
     $login->loginUser();
 
-    header("location: ../dashboard.php");
+    header("location: ../connexion.php");
     exit();
 }
