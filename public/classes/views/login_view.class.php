@@ -15,7 +15,7 @@ class LoginView {
                     $message = "Identifiants incorrects";
                     break;
                 case "notActive":
-                    $message = "Votre compte n'est pas actif. Veuillez contacter le professeur pour l'activer!";
+                    $message = "Votre compte n'est pas activé. Veuillez contacter le professeur pour l'activer!";
                     break;        
             }
 ?>

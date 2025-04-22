@@ -21,7 +21,7 @@ class SignupView
                     $message = "L'adresse e-mail est déjà prise";
                     break;
                 case "none":
-                    $message = "L'inscription a réussi, contactez le professeur pour activer votre compte";
+                    $message = "L'inscription a réussi, votre compte sera bientôt activé";
                     break;
             }
 
