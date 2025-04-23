@@ -1,15 +1,9 @@
-<?php
-
-session_start();
-$role = $_SESSION["role"];
-
-?>
 <div class="flex-shrink-0">
     <nav
         class="position-fixed d-flex flex-column justify-content-between vh-100 z-1 position-relative text-light shadow px-3 pt-5">
         <ul class="list-unstyled pt-5">
             <?php
-            if ($role === "professeur"):
+            if ($_SESSION["role"] === "professeur"):
             ?>
                 <li class="navlink mb-2">
                     <a class="d-block py-2 text-decoration-none fw-bold" href="dashboard.php">
@@ -42,7 +36,7 @@ $role = $_SESSION["role"];
                     </a>
                 </li>
             <?php
-            elseif ($role === "thesard"):
+            elseif ($_SESSION["role"] === "thesard"):
             ?>
                 <li class="navlink mb-2">
                     <a class="d-block py-2 text-decoration-none fw-bold" href="publications.php">
