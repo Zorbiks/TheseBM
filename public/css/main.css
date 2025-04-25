@@ -17,15 +17,6 @@ nav {
     background-color: #0c1e33;
 }
 
-main .container {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-}
-
-main .journal .event:not(:last-child) {
-    border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
-}
-
 /* Fix overflow */
 .flex-grow-1 {
     min-width: 0;
@@ -39,4 +30,17 @@ main .journal .event:not(:last-child) {
     .main-content-wrapper {
         padding-left: 259.33px;
     }
+
+    nav {
+        width: 259.33px;
+    }
+}
+
+main .container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+main .journal .event:not(:last-child) {
+    border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
 }
