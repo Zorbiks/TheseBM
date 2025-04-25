@@ -1,9 +1,7 @@
 <?php
 
-class SignupView
-{
-    public function renderErrorPopup()
-    {
+class SignupView {
+    public function renderErrorPopup() {
         if (isset($_GET["error"])):
             $message = "";
             $popupType = "";

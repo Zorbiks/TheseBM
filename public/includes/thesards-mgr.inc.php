@@ -6,7 +6,6 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["action"])) {
     include_once("../classes/models/dbh.class.php");
     include_once("../classes/models/thesards_mgr_model.class.php");
     include_once("../classes/controllers/thesards_mgr_contr.class.php");
-
     
     echo $action;
     
@@ -21,9 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["action"])) {
         header("location: ../gestion-des-thesards.php?action=add&error=none");
         exit();
     }
+} else {
+    header("location: ../dashboard.php");
+    exit();
 }
-
-// else {
-//     header("location: ../dashboard.php");
-//     exit();
-// }
