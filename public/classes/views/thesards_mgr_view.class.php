@@ -1,7 +1,6 @@
 <?php
 
 class ThesardsMgrView extends ThesardsMgrModel {
-
     public function renderThesardsTable() {
         $thesards = $this->getActiveAccounts();
         if (count($thesards) === 0):
@@ -46,21 +45,42 @@ class ThesardsMgrView extends ThesardsMgrModel {
     }
 
     public function renderErrorPopup() {
-        if (isset($_GET["error"]) && isset($_GET["action"])):
+        if (isset($_GET["error"]) && isset($_GET["action"])) {
             $message = "";
+            $popupType = "";
+
             if ($_GET["error"] === "none") {
-                if ($_GET["action"] === "delete") {
-                    $message = "Le compte a été supprimé avec succès.";
+                $popupType = "success";
+                switch ($_GET["action"]) {
+                    case "delete":
+                        $message = "Le compte a été supprimé avec succès";
+                        break;
+                    case "add":
+                        $message = "La thèse a été ajoutée avec succès";
+                        break;
+                }
+            } else {
+                $popupType = "danger";
+                switch ($_GET["error"]) {
+                    case "emailTaken":
+                        $message = "L'adresse e-mail est déjà prise";
+                        break;
+                    case "emptyInput":
+                        $message = "Tous les champs de saisie doivent être remplis";
+                        break;
+                    case "emailInvalid":
+                        $message = "L'email soumis est invalide";
+                        break;
                 }
             }
         ?>
-            <div class="toast show position-absolute mt-5 top-0 start-50 translate-middle-x align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast show position-absolute mt-5 top-0 start-50 translate-middle-x align-items-center text-bg-<?= $popupType ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="d-flex">
                     <div class="toast-body"><?= $message ?></div>
                     <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
             </div>
         <?php
-        endif;
+        }
     }
 }

@@ -1,5 +1,11 @@
-<?php include_once("includes/checklogin.inc.php") ?>
-<?php include_once("includes/components/head.html") ?>
+<?php
+include_once("includes/checklogin.inc.php");
+include_once("includes/components/head.html");
+
+include_once("classes/models/dbh.class.php");
+include_once("classes/models/thesards_mgr_model.class.php");
+include_once("classes/views/thesards_mgr_view.class.php");
+?>
 
 <title>ThèseBM - Gestion des Thésards</title>
 </head>
@@ -31,10 +37,10 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter Thésard</h1>
+                                        <h1 class="modal-title fs-5" id="addThesardModalLabel">Ajouter Thésard</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form>
+                                    <form method="GET" action="includes/thesards-mgr.inc.php">
                                         <div class="modal-body">
                                             <div class="mb-3">
                                                 <label for="firstname" class="form-label">Prénom</label>
@@ -56,11 +62,11 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                                 <i class="fa-solid fa-xmark"></i>
-                                                Close
+                                                Fermer
                                             </button>
-                                            <button type="submit" class="btn btn-primary">
+                                            <button class="btn btn-primary" type="submit" name="action" value="add">
                                                 <i class="fa-solid fa-floppy-disk"></i>
-                                                Save changes
+                                                Ajouter
                                             </button>
                                         </div>
                                     </form>
@@ -69,12 +75,9 @@
                         </div>
 
                         <?php
-                            include_once("classes/models/dbh.class.php");
-                            include_once("classes/models/thesards_mgr_model.class.php");
-                            include_once("classes/views/thesards_mgr_view.class.php");
                             $view = new ThesardsMgrView();
-                            $view->renderThesardsTable();
                             $view->renderErrorPopup();
+                            $view->renderThesardsTable();
                         ?>
                         
                     </div>
