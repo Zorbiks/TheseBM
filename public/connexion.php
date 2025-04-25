@@ -43,11 +43,11 @@
             <form class="p-4 border rounded shadow" style="width: 350px;" method="POST" action="includes/login.inc.php">
                 <h4 class="text-center mb-3">S'authentifier</h4>
                 <div class="form-floating mb-3">
-                    <input class="form-control" id="email" type="email" name="email" placeholder="E-mail">
+                    <input class="form-control" id="email" type="email" name="email" placeholder="E-mail" required>
                     <label class="form-label" for="email">E-mail</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input class="form-control" id="password" type="password" name="password" placeholder="Mot de passe">
+                    <input class="form-control" id="password" type="password" name="password" placeholder="Mot de passe" minlength="8" maxlength="24" required>
                     <label class="form-label" for="password">Mot de passe</label>
                 </div>
                 <a class="small" href="inscription.php">Vous n'avez pas de compte?</a>

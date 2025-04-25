@@ -42,21 +42,21 @@ include_once("classes/views/thesards_mgr_view.class.php");
                                     </div>
                                     <form method="GET" action="includes/thesards-mgr.inc.php">
                                         <div class="modal-body">
-                                            <div class="mb-3">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Prénom" required>
                                                 <label for="firstname" class="form-label">Prénom</label>
-                                                <input type="text" class="form-control" id="firstname" name="firstname">
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Nom" required>
                                                 <label for="lastname" class="form-label">Nom</label>
-                                                <input type="text" class="form-control" id="lastname" name="lastname">
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="form-floating mb-3">
+                                                <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" required>
                                                 <label for="email" class="form-label">E-mail</label>
-                                                <input type="email" class="form-control" id="email" name="email">
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="form-floating mb-3">
+                                                <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" minlength="8" maxlength="24" required>
                                                 <label for="password" class="form-label">Mot de passe</label>
-                                                <input type="password" class="form-control" id="password" name="password">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
