@@ -18,6 +18,9 @@ class SignupView {
                 case "emailTaken":
                     $message = "L'adresse e-mail est déjà prise";
                     break;
+                case "passwordLength":
+                    $message = "Le mot de passe doit avoir une longueur comprise entre 8 et 24 caractères";
+                    break;
                 case "none":
                     $message = "L'inscription a réussi, votre compte sera bientôt activé";
                     break;

@@ -68,6 +68,9 @@ class ThesardsMgrView extends ThesardsMgrModel {
                     case "emptyInput":
                         $message = "Tous les champs de saisie doivent être remplis";
                         break;
+                    case "passwordLength":
+                        $message = "Le mot de passe doit avoir une longueur comprise entre 8 et 24 caractères";
+                        break;
                     case "emailInvalid":
                         $message = "L'email soumis est invalide";
                         break;

@@ -29,6 +29,10 @@ class SignupContr extends SignupModel {
             header("location: ../inscription.php?error=passwordDontMatch");
             exit();
         }
+        if ($this->passwordLength()) {
+            header("location: ../inscription.php?error=passwordLength");
+            exit();
+        }
         if ($this->isEmailTaken()) {
             header("location: ../inscription.php?error=emailTaken");
             exit();
@@ -54,6 +58,10 @@ class SignupContr extends SignupModel {
 
     private function passwordDontMatch() {
         return ($this->password !== $this->passwordRepeat);
+    }
+
+    private function passwordLength() {
+        return strlen($this->password) < 8 || strlen($this->password) > 24;
     }
 
     private function isEmailTaken() {

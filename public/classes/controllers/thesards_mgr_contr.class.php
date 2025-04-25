@@ -40,6 +40,10 @@ class ThesardsMgrContr extends ThesardsMgrModel {
             header("location: ../gestion-des-thesards.php?action=add&error=emailTaken");
             exit();
         }
+        if ($this->passwordMinLength()) {
+            header("location: ../gestion-des-thesards.php?action=add&error=passwordLength");
+            exit();
+        }
 
         $this->setAccount($this->firstName, $this->lastName, $this->email, $this->password);
     }
@@ -60,6 +64,10 @@ class ThesardsMgrContr extends ThesardsMgrModel {
 
     private function isEmailInvalid() {
         return !filter_var($this->email, FILTER_VALIDATE_EMAIL);
+    }
+
+    private function passwordMinLength() {
+        return strlen($this->password) < 8;
     }
 
     private function isEmailTaken() {
