@@ -1,0 +1,4 @@
+SetEnv DB_HOST ""
+SetEnv DB_USERNAME ""
+SetEnv DB_PASSWORD ""
+SetEnv DB_NAME ""
