@@ -1,10 +1,10 @@
 <?php
-include_once("includes/checklogin.inc.php");
-include_once("includes/components/head.html");
+include_once "../app/includes/checklogin.inc.php";
+include_once "../app/includes/components/head.html";
 
-include_once("classes/models/dbh.class.php");
-include_once("classes/models/thesards_mgr_model.class.php");
-include_once("classes/views/thesards_mgr_view.class.php");
+include_once "../app/classes/models/dbh.class.php";
+include_once "../app/classes/models/thesards_mgr_model.class.php";
+include_once "../app/classes/views/thesards_mgr_view.class.php";
 ?>
 
 <title>ThèseBM - Gestion des Thésards</title>
@@ -12,12 +12,12 @@ include_once("classes/views/thesards_mgr_view.class.php");
 <body>
     <div class="d-flex">
         <!-- Sidebar Navigation -->
-        <?php include_once("includes/components/navbar.php") ?>
+        <?php include_once "../app/includes/components/navbar.php" ?>
 
         <div class="flex-grow-1 main-content-wrapper">
             <!-- Header -->
             <?php
-                include_once("includes/components/header.php");
+                include_once "../app/includes/components/header.php";
             ?>
 
             <!-- Start Main Content -->
@@ -40,7 +40,7 @@ include_once("classes/views/thesards_mgr_view.class.php");
                                         <h1 class="modal-title fs-5" id="addThesardModalLabel">Ajouter Thésard</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form method="GET" action="includes/thesards-mgr.inc.php">
+                                    <form method="GET" action="/TheseBM/app/includes/thesards-mgr.inc.php">
                                         <div class="modal-body">
                                             <div class="form-floating mb-3">
                                                 <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Prénom" required>

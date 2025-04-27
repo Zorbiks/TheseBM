@@ -48,7 +48,7 @@
             endif;
             ?>
         </ul>
-        <a class="px-3 py-2 text-decoration-none fw-bold" href="includes/logout.inc.php">
+        <a class="px-3 py-2 text-decoration-none fw-bold" href="/TheseBM/app/includes/logout.inc.php">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
             <span class="d-none d-md-inline">Déconnexion</span>
         </a>

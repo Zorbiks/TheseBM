@@ -35,12 +35,12 @@
     </header>
     <main>
         <?php
-            include_once("classes/views/login_view.class.php");
+            include_once "../app/classes/views/login_view.class.php";
             $view = new LoginView();
             $view->renderErrorPopup();
         ?>
         <div class="container d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 56px);">
-            <form class="p-4 border rounded shadow" style="width: 350px;" method="POST" action="includes/login.inc.php">
+            <form class="p-4 border rounded shadow" style="width: 350px;" method="POST" action="/TheseBM/app/includes/login.inc.php">
                 <h4 class="text-center mb-3">S'authentifier</h4>
                 <div class="form-floating mb-3">
                     <input class="form-control" id="email" type="email" name="email" placeholder="E-mail" required>

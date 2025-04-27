@@ -37,13 +37,13 @@
     <main>
         <!-- Start Popup Render -->
         <?php
-            include_once("classes/views/signup_view.class.php");
+            include_once "../app/classes/views/signup_view.class.php";
             $view = new SignupView();
             $view->renderErrorPopup();
         ?>
         <!-- End Popup Render -->
         <div class="container d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 56px);">
-            <form class="p-4 border rounded shadow" style="width: 350px;" method="POST" action="includes/signup.inc.php">
+            <form class="p-4 border rounded shadow" style="width: 350px;" method="POST" action="/TheseBM/app/includes/signup.inc.php">
                 <h4 class="text-center mb-3">S'inscrire</h4>
                 <div class="form-floating mb-3">
                     <input class="form-control" id="firstname" type="text" name="firstname" placeholder="Prénom" required>

@@ -7,15 +7,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"]) && $_POST["
     $password = $_POST["password"];
 
     // Instantiate the LoginContr class
-    include_once("../classes/models/dbh.class.php");
-    include_once("../classes/models/login_model.class.php");
-    include_once("../classes/controllers/login_contrl.class.php");
+    include_once "../classes/models/dbh.class.php";
+    include_once "../classes/models/login_model.class.php";
+    include_once "../classes/controllers/login_contrl.class.php";
 
     $login = new LoginContr($email, $password);
 
     // Run error handling and login the user
     $login->loginUser();
 
-    header("location: ../connexion.php");
+    header("location: ../../public/connexion.php");
     exit();
 }

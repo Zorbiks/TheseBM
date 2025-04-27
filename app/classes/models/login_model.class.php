@@ -13,19 +13,19 @@ class LoginModel extends Dbh {
             }
 
             if ($stmt->rowCount() === 0) {
-                header("location: ../connexion.php?error=incorrectCredentials");
+                header("location: ../../public/connexion.php?error=incorrectCredentials");
                 exit();
             }
 
             $user = $stmt->fetch();
             
             if (!$user || !password_verify($password, $user['password'])) {
-                header("location: ../connexion.php?error=incorrectCredentials");
+                header("location: ../../public/connexion.php?error=incorrectCredentials");
                 exit();
             }
 
             if ($user["active"] === 0) {
-                header("location: ../connexion.php?error=notActive");
+                header("location: ../../public/connexion.php?error=notActive");
                 exit();
             }
 

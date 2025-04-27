@@ -3,11 +3,10 @@
 class Dbh {
     protected function connect() {
         try {
-            echo $_SERVER["DN_HOST"];
-            $db_host = $_SERVER["DB_HOST"];
-            $db_username = $_SERVER["DB_USERNAME"];
-            $db_password = $_SERVER["DB_PASSWORD"];
-            $db_name = $_SERVER["DB_NAME"];
+            $db_host = getenv("DB_HOST");
+            $db_username = getenv("DB_USERNAME");
+            $db_password = getenv("DB_PASSWORD");
+            $db_name = getenv("DB_NAME");
 
 
             $dsn = "mysql:host=$db_host;dbname=$db_name";

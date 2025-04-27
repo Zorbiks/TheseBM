@@ -28,7 +28,7 @@ class ThesardsMgrView extends ThesardsMgrModel {
                                 <td><?= $thesard["nom"] ?></td>
                                 <td><?= $thesard["email"] ?></td>
                                 <td>
-                                    <a class="btn btn-danger" href="includes/thesards-mgr.inc.php?id=<?= $thesard["id"] ?>&action=delete">
+                                    <a class="btn btn-danger" href="/TheseBM/app/includes/thesards-mgr.inc.php?id=<?= $thesard["id"] ?>&action=delete">
                                     <i class="fa-solid fa-trash-can fw-fa"></i>
                                         Supprimer
                                     </a>
