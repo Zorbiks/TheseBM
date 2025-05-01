@@ -58,6 +58,8 @@ class MailService {
             $content = str_replace("{{firstname}}", $this->thesardFirstName, $content);
             $content = str_replace("{{lastname}}", $this->thesardLastName, $content);
 
+            $mail->addEmbeddedImage(__DIR__ . "/logo.png", "logocid");
+
             $mail->Body = $content;
 
             // Send the message, check for errors
