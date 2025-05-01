@@ -19,6 +19,31 @@ class DemandesModel extends Dbh {
         }
     }
 
+    protected function getThesardInfo($id) {
+        try {
+            // Query to fetch the user with all required fields
+            $sql = "SELECT prenom, nom, email FROM users WHERE id = ?;";
+            $dbh = $this->connect();
+            $stmt = $dbh->prepare($sql);
+
+            if (!$stmt->execute([$id])) {
+                throw new Exception("Database query execution failed.");
+            }
+
+            if ($stmt->rowCount() === 0) {
+                header("location: ../../public/connexion.php?error=incorrectCredentials");
+                exit();
+            }
+
+            $user = $stmt->fetch();
+
+            return $user;
+
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+        }
+    }
+
     protected function activateAccount($id) {
         try {
             $sql = "UPDATE users SET active = 1 WHERE users.id = ?;";
