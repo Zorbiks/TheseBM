@@ -86,6 +86,20 @@ class PublicationContr extends PublicationModel {
             exit();
         }
 
+        // Create directories where to store PDFs
+        $directories = [
+            "uploads/publications",
+            "uploads/attestations",
+            "uploads/rapports"
+        ];
+        
+        foreach ($directories as $dir) {
+            if (!file_exists(__DIR__ . "/../../../" . $dir)) {
+                mkdir(__DIR__ . "/../../../" . $dir, 0755, true);
+                echo "Created: $dir<br>";
+            }
+        }
+
         $this->setPublication(
             $this->reference,
             $this->titre,
