@@ -1,4 +1,4 @@
 .htaccess
 
-uploads/**/*.pdf
+/uploads/**/*.pdf
 
