@@ -1,1 +1,4 @@
 .htaccess
+uploads/publications/*.pdf
+uploads/attestations/*.pdf
+uploads/rapports/*.pdf
