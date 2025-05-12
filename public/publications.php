@@ -1,6 +1,10 @@
 <?php include_once "../app/includes/checklogin.inc.php" ?>
 <?php include_once "../app/includes/components/head.html" ?>
 
+<?php include_once "../app/classes/models/dbh.class.php" ?>
+<?php include_once "../app/classes/models/publications_model.class.php" ?>
+<?php include_once "../app/classes/views/publications_view.class.php" ?>
+
 <title>ThèseBM - Publications</title>
 </head>
 <body>
@@ -40,122 +44,13 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-striped text-nowrap">
-                                <thead>
-                                    <tr>
-                                        <th class="bg-primary text-light">Référence</th>
-                                        <th class="bg-primary text-light">Titre</th>
-                                        <th class="bg-primary text-light">Auteurs</th>
-                                        <th class="bg-primary text-light">Numéro</th>
-                                        <th class="bg-primary text-light">Volume</th>
-                                        <th class="bg-primary text-light">Date</th>
-                                        <th class="bg-primary text-light">Lieu</th>
-                                        <th class="bg-primary text-light">DOI</th>
-                                        <th class="bg-primary text-light">Type</th>
-                                        <th class="bg-primary text-light">Soumis Par</th>
-                                        <th class="bg-primary text-light">Attestation</th>
-                                        <th class="bg-primary text-light">Rapport</th>
-                                        <th class="bg-primary text-light">Publication</th>
-                                        <?php if ($_SESSION["role"] === "thesard"): ?>
-                                            <th class="bg-primary text-light">Actions</th>
-                                        <?php endif; ?>
-                                    </tr>
-                                </thead>
-                                <tbody class="align-middle">
-                                    <tr>
-                                        <td>001</td>
-                                        <td>Analyse des tendances du marché numérique</td>
-                                        <td>Dupont, Martin, Leblanc</td>
-                                        <td>4</td>
-                                        <td>-</td>
-                                        <td>15/04/2023</td>
-                                        <td>Paris, France</td>
-                                        <td>10.1234/abcd.efg.hijk</td>
-                                        <td>Communication</td>
-                                        <td>Oussama Elmehdi</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#">
-                                                <i class="fa-solid fa-download fa-fw"></i>
-                                                Télécharger
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-success" href="#">
-                                                <i class="fa-solid fa-download fa-fw"></i>
-                                                Télécharger
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-success" href="#">
-                                                <i class="fa-solid fa-download fa-fw"></i>
-                                                Télécharger
-                                            </a>
-                                            <a class="btn btn-primary" href="#">
-                                                <i class="fa-solid fa-eye fa-fw"></i>
-                                                Consulter
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-secondary" href="#">
-                                                <i class="fa-solid fa-pen fa-fw"></i>
-                                                Modifier
-                                            </a>
-                                            <a class="btn btn-danger" href="#">
-                                                <i class="fa-solid fa-trash-can fa-fw"></i>
-                                                Supprimer
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>021</td>
-                                        <td>Analyse des tendances du marché numérique</td>
-                                        <td>Martin, Leblanc</td>
-                                        <td>2</td>
-                                        <td>1</td>
-                                        <td>15/04/2023</td>
-                                        <td>London, United Kingdom</td>
-                                        <td>10.1234/abcd.efg.hijk</td>
-                                        <td>Journal</td>
-                                        <td>Oussama Elmehdi</td>
-                                        <td>
-                                            <a class="btn btn-success" href="#">
-                                                <i class="fa-solid fa-download fa-fw"></i>
-                                                Télécharger
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-success" href="#">
-                                                <i class="fa-solid fa-download fa-fw"></i>
-                                                Télécharger
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-success" href="#">
-                                                <i class="fa-solid fa-download fa-fw"></i>
-                                                Télécharger
-                                            </a>
-                                            <a class="btn btn-primary" href="#">
-                                                <i class="fa-solid fa-eye fa-fw"></i>
-                                                Consulter
-                                            </a>
-                                        </td>
-                                        <?php if ($_SESSION["role"] === "thesard"): ?>
-                                        <td>
-                                            <a class="btn btn-secondary" href="#">
-                                                <i class="fa-solid fa-pen fa-fw"></i>
-                                                Modifier
-                                            </a>
-                                            <a class="btn btn-danger" href="#">
-                                                <i class="fa-solid fa-trash-can fa-fw"></i>
-                                                Supprimer
-                                            </a>
-                                        </td>
-                                        <?php endif; ?>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+
+                        <?php
+                            $view = new PublicationsView();
+                            $view->renderErrorPopup();
+                            $view->renderPublicationsTable();
+                        ?>
+                        
                         <!-- Start Modal -->
                         <div class="modal fade" id="addPublicationModal" tabindex="-1" aria-labelledby="addPublicationModal" aria-hidden="true">
                             <div class="modal-dialog">
@@ -164,25 +59,23 @@
                                         <h1 class="modal-title fs-5" id="addPublicationModalLabel">Ajouter Publication</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form>
+                                    <form action="../app/includes/publications.inc.php" method="POST" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <div class="mb-3">
                                                 <label for="reference" class="form-label">Référence</label>
                                                 <input type="text" class="form-control" id="reference" name="reference">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="title" class="form-label">Titre</label>
-                                                <input type="text" class="form-control" id="title" name="title">
+                                                <label for="titre" class="form-label">Titre</label>
+                                                <input type="text" class="form-control" id="titre" name="titre">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="authors" class="form-label">Auteurs</label>
-                                                <input type="text" class="form-control" id="authors" name="authors">
+                                                <label for="auteurs" class="form-label">Auteurs</label>
+                                                <input type="text" class="form-control" id="auteurs" name="auteurs">
                                             </div>
                                             <div class="mb-3">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="location" class="form-label">Lieu</label>
-                                                <input type="text" class="form-control" id="location" name="location">
+                                                <label for="lieu" class="form-label">Lieu</label>
+                                                <input type="text" class="form-control" id="lieu" name="lieu">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="doi" class="form-label">DOI</label>
@@ -205,8 +98,8 @@
                                             </div>
                                             <div class="d-flex gap-3 mb-3">
                                                 <div class="flex-grow-1">
-                                                    <label for="number" class="form-label">Numéro</label>
-                                                    <input type="number" class="form-control" id="number" name="number" min="1" max="999999">
+                                                    <label for="numero" class="form-label">Numéro</label>
+                                                    <input type="number" class="form-control" id="numero" name="numero" min="1" max="999999">
                                                 </div>
                                                 <div class="flex-grow-1" id="volume-wrapper">
                                                     <label for="volume" class="form-label">Volume</label>
@@ -221,13 +114,17 @@
                                                 <label for="publication" class="form-label">Publication</label>
                                                 <input type="file" class="form-control" id="publication" name="publication">
                                             </div>
+                                            <div class="mb-3">
+                                                <label for="rapport" class="form-label">Rapport</label>
+                                                <input type="file" class="form-control" id="rapport" name="rapport">
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                                 <i class="fa-solid fa-xmark"></i>
                                                 Close
                                             </button>
-                                            <button type="submit" class="btn btn-primary">
+                                            <button type="submit" class="btn btn-primary" name="action" value="add">
                                                 <i class="fa-solid fa-floppy-disk"></i>
                                                 Save changes
                                             </button>
