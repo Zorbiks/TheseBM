@@ -62,31 +62,31 @@
                                     <form action="../app/includes/publications.inc.php" method="POST" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                <label for="reference" class="form-label">Référence</label>
+                                                <label for="reference" class="form-label">Référence *</label>
                                                 <input type="text" class="form-control" id="reference" name="reference">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="titre" class="form-label">Titre</label>
+                                                <label for="titre" class="form-label">Titre *</label>
                                                 <input type="text" class="form-control" id="titre" name="titre">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="auteurs" class="form-label">Auteurs</label>
+                                                <label for="auteurs" class="form-label">Auteurs *</label>
                                                 <input type="text" class="form-control" id="auteurs" name="auteurs">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="lieu" class="form-label">Lieu</label>
+                                                <label for="lieu" class="form-label">Lieu *</label>
                                                 <input type="text" class="form-control" id="lieu" name="lieu">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="doi" class="form-label">DOI</label>
+                                                <label for="doi" class="form-label">DOI *</label>
                                                 <input type="text" class="form-control" id="doi" name="doi">
                                             </div>
                                             <div class="flex-grow-1">
-                                                <label for="date" class="form-label">Date</label>
+                                                <label for="date" class="form-label">Date *</label>
                                                 <input type="date" class="form-control" id="date" name="date">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="type" class="form-label">Type</label>
+                                                <label for="type" class="form-label">Type *</label>
                                                 <select class="form-select" id="type" name="type">
                                                     <option selected disabled>Sélectionnez un type</option>
                                                     <option value="Publication">Publication</option>
@@ -107,26 +107,27 @@
                                                 </div>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="attestation" class="form-label">Attestation</label>
+                                                <label for="attestation" class="form-label">Attestation *</label>
                                                 <input type="file" class="form-control" id="attestation" name="attestation">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="publication" class="form-label">Publication</label>
+                                                <label for="publication" class="form-label">Publication *</label>
                                                 <input type="file" class="form-control" id="publication" name="publication">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="rapport" class="form-label">Rapport</label>
+                                                <label for="rapport" class="form-label">Rapport *</label>
                                                 <input type="file" class="form-control" id="rapport" name="rapport">
                                             </div>
+                                            <div class="text-secondary"><small>* Champ obligatoire</small></div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                                 <i class="fa-solid fa-xmark"></i>
-                                                Close
+                                                Fermer
                                             </button>
                                             <button type="submit" class="btn btn-primary" name="action" value="add">
                                                 <i class="fa-solid fa-floppy-disk"></i>
-                                                Save changes
+                                                Ajouter
                                             </button>
                                         </div>
                                     </form>
