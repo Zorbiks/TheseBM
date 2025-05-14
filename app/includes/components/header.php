@@ -2,7 +2,7 @@
     if ($_SESSION["role"] === "professeur") {
         $appHomeUrl = "dashboard.php";
     } elseif ($_SESSION["role"] === "thesard") {
-        $appHomeUrl = "publicaions.php";
+        $appHomeUrl = "publications.php";
     }
 ?>
 
