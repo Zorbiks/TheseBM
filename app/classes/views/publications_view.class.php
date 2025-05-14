@@ -120,7 +120,7 @@ class PublicationsView extends PublicationModel
                                             <i class="fa-solid fa-pen fa-fw"></i>
                                             Modifier
                                         </a>
-                                        <a class="btn btn-danger" href="#">
+                                        <a class="btn btn-danger" href="../app/includes/publications.inc.php?action=delete&id=<?= $publication["id"] ?>">
                                             <i class="fa-solid fa-trash-can fa-fw"></i>
                                             Supprimer
                                         </a>

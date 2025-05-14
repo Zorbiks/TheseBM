@@ -75,6 +75,10 @@ class PublicationContr extends PublicationModel {
         $this->thesard_id = $thesard_id;
     }
 
+    public function delete() {
+        $this->deletePublication($this->id);
+    }
+
     public function add() {
         if ($this->isEmptyInput()) {
             header("location: ../../public/publications.php?error=emptyInput");

@@ -51,6 +51,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
         header("location: ../../public/publications.php?action=add&error=none");
         exit();
     }
+} elseif ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["action"])) {
+    include_once "../classes/models/dbh.class.php";
+    include_once "../classes/models/publications_model.class.php";
+    include_once "../classes/controllers/publications_contr.class.php";
+
+    $action = $_GET["action"];
+
+    if ($action === "delete") {
+        $pubMgr = new PublicationContr($_GET["id"]);
+        $pubMgr->delete();
+
+        header("location: ../../public/publications.php?action=delete&error=none");
+        exit();
+    }
 } else {
     header("location: ../../public/publications.php");
     exit();

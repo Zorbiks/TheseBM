@@ -46,7 +46,6 @@ class PublicationModel extends Dbh {
     }
 
     protected function getPublicationsByThesardId($thesard_id) {
-
         try {
             $sql = "SELECT * FROM publications WHERE thesard_id = ?;";
 
@@ -66,20 +65,34 @@ class PublicationModel extends Dbh {
     }
 
     protected function getAllPublications() {
-
         try {
             $sql = "SELECT * FROM publications;";
+
+            $dbh = $this->connect();
+            $result = $dbh->query($sql);
+
+            // Close the connection and stop the script on failure
+            if (!$result) {
+                throw new Exception("Database query execution failed.");
+            }
+
+            return $result->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    protected function deletePublication($id) {
+        try {
+            $sql = "DELETE FROM publications WHERE id = ?;";
 
             $dbh = $this->connect();
             $stmt = $dbh->prepare($sql);
 
             // Close the connection and stop the script on failure
-            if (!$stmt->execute()) {
+            if (!$stmt->execute([$id])) {
                 throw new Exception("Database query execution failed.");
             }
-
-            $result = $stmt->fetchAll();
-            return $result;
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
