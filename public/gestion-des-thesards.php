@@ -1,10 +1,13 @@
 <?php
-include_once "../app/includes/checklogin.inc.php";
-include_once "../app/includes/components/head.html";
+include_once __DIR__ . "/../app/includes/checklogin.inc.php";
+include_once __DIR__ . "/../app/includes/components/head.html";
 
-include_once "../app/classes/models/dbh.class.php";
-include_once "../app/classes/models/thesards_mgr_model.class.php";
-include_once "../app/classes/views/thesards_mgr_view.class.php";
+include_once __DIR__ . "/../app/classes/models/dbh.class.php";
+include_once __DIR__ . "/../app/classes/models/thesards_mgr_model.class.php";
+include_once __DIR__ . "/../app/classes/views/thesards_mgr_view.class.php";
+
+// Include managing thesards login
+include_once __DIR__ . "/../app/includes/thesards-mgr.inc.php";
 ?>
 
 <title>ThèseBM - Gestion des Thésards</title>
@@ -12,7 +15,7 @@ include_once "../app/classes/views/thesards_mgr_view.class.php";
 <body>
     <div class="d-flex">
         <!-- Sidebar Navigation -->
-        <?php include_once "../app/includes/components/navbar.php" ?>
+        <?php include_once  "../app/includes/components/navbar.php" ?>
 
         <div class="flex-grow-1 main-content-wrapper">
             <!-- Header -->
@@ -40,22 +43,22 @@ include_once "../app/classes/views/thesards_mgr_view.class.php";
                                         <h1 class="modal-title fs-5" id="addThesardModalLabel">Ajouter Thésard</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form method="GET" action="/TheseBM/app/includes/thesards-mgr.inc.php">
+                                    <form method="GET" action="">
                                         <div class="modal-body">
                                             <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Prénom" required>
+                                                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Prénom">
                                                 <label for="firstname" class="form-label">Prénom</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Nom" required>
+                                                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Nom">
                                                 <label for="lastname" class="form-label">Nom</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" required>
+                                                <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
                                                 <label for="email" class="form-label">E-mail</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" minlength="8" maxlength="24" required>
+                                                <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" minlength="8" maxlength="24">
                                                 <label for="password" class="form-label">Mot de passe</label>
                                             </div>
                                         </div>

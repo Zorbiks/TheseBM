@@ -1,6 +1,6 @@
 <?php
-    session_start();
-    
+    // Skip login form if already the user is already logged in 
+    session_start();    
     if (isset($_SESSION["id"], $_SESSION["firstName"], $_SESSION["lastName"], $_SESSION["role"])) {
         if ($_SESSION["role"] === "professeur") {
             header("location: dashboard.php");
@@ -9,6 +9,9 @@
         }
         exit();
     }
+
+    // Import login logic
+    include_once __DIR__ . "/../app/includes/login.inc.php";
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -40,14 +43,14 @@
             $view->renderErrorPopup();
         ?>
         <div class="container d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 56px);">
-            <form class="p-4 border rounded shadow" style="width: 350px;" method="POST" action="/TheseBM/app/includes/login.inc.php">
+            <form class="p-4 border rounded shadow" style="width: 350px;" method="POST" action="">
                 <h4 class="text-center mb-3">S'authentifier</h4>
                 <div class="form-floating mb-3">
-                    <input class="form-control" id="email" type="email" name="email" placeholder="E-mail" required>
+                    <input class="form-control" id="email" type="email" name="email" placeholder="E-mail">
                     <label class="form-label" for="email">E-mail</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input class="form-control" id="password" type="password" name="password" placeholder="Mot de passe" minlength="8" maxlength="24" required>
+                    <input class="form-control" id="password" type="password" name="password" placeholder="Mot de passe" minlength="8" maxlength="24">
                     <label class="form-label" for="password">Mot de passe</label>
                 </div>
                 <a class="small" href="inscription.php">Vous n'avez pas de compte?</a>

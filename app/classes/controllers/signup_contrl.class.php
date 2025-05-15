@@ -18,23 +18,23 @@ class SignupContr extends SignupModel {
 
     public function signupUser() {
         if ($this->isEmptyInput()) {
-            header("location: ../../public/inscription.php?error=emptyInput");
+            header("location: inscription.php?error=emptyInput");
             exit();
         }
         if ($this->isEmailInvalid()) {
-            header("location: ../../public/inscription.php?error=emailInvalid");
+            header("location: inscription.php?error=emailInvalid");
             exit();
         }
         if ($this->passwordDontMatch()) {
-            header("location: ../../public/inscription.php?error=passwordDontMatch");
+            header("location: inscription.php?error=passwordDontMatch");
             exit();
         }
         if ($this->passwordLength()) {
-            header("location: ../../public/inscription.php?error=passwordLength");
+            header("location: inscription.php?error=passwordLength");
             exit();
         }
         if ($this->isEmailTaken()) {
-            header("location: ../../public/inscription.php?error=emailTaken");
+            header("location: inscription.php?error=emailTaken");
             exit();
         }
 

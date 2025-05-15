@@ -4,24 +4,22 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["id"]) && isset($_GET["a
     $id = $_GET["id"];
     $action = $_GET["action"];
 
-    include_once "../classes/services/MailService.php";
-    include_once "../classes/models/dbh.class.php";
-    include_once "../classes/models/demandes_model.class.php";
-    include_once "../classes/controllers/demandes_contr.class.php";
+    include_once __DIR__ . "/../classes/services/MailService.php";
+    include_once __DIR__ . "/../classes/models/dbh.class.php";
+    include_once __DIR__ . "/../classes/models/demandes_model.class.php";
+    include_once __DIR__ . "/../classes/controllers/demandes_contr.class.php";
 
     $demande = new DemandesContr($id);
 
+    echo "$id $action";
+
     if ($action === "accept") {
         $demande->accept();
-        header("location: ../../public/demandes-inscription.php?action=accept&error=none");
+        header("location: demandes-inscription.php?action=accept&error=none");
         exit();
-    } elseif("reject") {
+    } elseif($action === "reject") {
         $demande->reject();
-        header("location: ../../public/demandes-inscription.php?action=reject&error=none");
+        header("location: demandes-inscription.php?action=reject&error=none");
         exit();
     }
-
-} else {
-    header("location: ../../public/dashboard.php");
-    exit();
 }

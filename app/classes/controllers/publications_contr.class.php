@@ -81,12 +81,12 @@ class PublicationContr extends PublicationModel {
 
     public function add() {
         if ($this->isEmptyInput()) {
-            header("location: ../../public/publications.php?error=emptyInput");
+            header("location: publications.php?error=emptyInput");
             exit();
         }
 
         if ($this->isNotPDF()) {
-            header("location: ../../public/publications.php?error=notPDF");
+            header("location: publications.php?error=notPDF");
             exit();
         }
 

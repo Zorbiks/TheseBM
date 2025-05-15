@@ -3,9 +3,9 @@
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
     $action = $_POST["action"];
 
-    include_once "../classes/models/dbh.class.php";
-    include_once "../classes/models/publications_model.class.php";
-    include_once "../classes/controllers/publications_contr.class.php";
+    include_once __DIR__ . "/../classes/models/dbh.class.php";
+    include_once __DIR__ . "/../classes/models/publications_model.class.php";
+    include_once __DIR__ . "/../classes/controllers/publications_contr.class.php";
 
     $reference   = $_POST["reference"];
     $titre       = $_POST["titre"];
@@ -52,9 +52,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
         exit();
     }
 } elseif ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["action"])) {
-    include_once "../classes/models/dbh.class.php";
-    include_once "../classes/models/publications_model.class.php";
-    include_once "../classes/controllers/publications_contr.class.php";
+    include_once __DIR__ . "/../classes/models/dbh.class.php";
+    include_once __DIR__ . "/../classes/models/publications_model.class.php";
+    include_once __DIR__ . "/../classes/controllers/publications_contr.class.php";
 
     $action = $_GET["action"];
 
@@ -62,10 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
         $pubMgr = new PublicationContr($_GET["id"]);
         $pubMgr->delete();
 
-        header("location: ../../public/publications.php?action=delete&error=none");
+        header("location: publications.php?action=delete&error=none");
         exit();
     }
-} else {
-    header("location: ../../public/publications.php");
-    exit();
 }

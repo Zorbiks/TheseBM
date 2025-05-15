@@ -12,11 +12,11 @@ class LoginContr extends LoginModel {
 
     public function loginUser() {
         if ($this->isEmptyInput()) {
-            header("location: ../../public/connexion.php?error=emptyInput");
+            header("location: connexion.php?error=emptyInput");
             exit();
         }
         if ($this->isEmailInvalid()) {
-            header("location: ../../public/connexion.php?error=emailInvalid");
+            header("location: connexion.php?error=emailInvalid");
             exit();
         }
 

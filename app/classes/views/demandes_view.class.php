@@ -28,11 +28,11 @@ class DemandesView extends DemandesModel {
                     <td><?= $thesard["nom"] ?></td>
                     <td><?= $thesard["email"] ?></td>
                     <td>
-                        <a class="btn btn-success" href="/TheseBM/app/includes/demandes.inc.php?id=<?= $thesard["id"] ?>&action=accept">
+                        <a class="btn btn-success" href="?id=<?= $thesard["id"] ?>&action=accept">
                             <i class="fa-solid fa-check fw-fa"></i>
                             Accepter
                         </a>
-                        <a class="btn btn-danger" href="/TheseBM/app/includes/demandes.inc.php?id=<?= $thesard["id"] ?>&action=reject">
+                        <a class="btn btn-danger" href="?id=<?= $thesard["id"] ?>&action=reject">
                             <i class="fa-solid fa-xmark fw-fa"></i>
                             Rejeter
                         </a>

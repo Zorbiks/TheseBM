@@ -4,5 +4,5 @@ session_start();
 session_destroy();
 session_unset();
 
-header("location: ../../public/index.html");
+header("location: index.html");
 exit();

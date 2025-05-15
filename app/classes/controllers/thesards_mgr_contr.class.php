@@ -29,19 +29,19 @@ class ThesardsMgrContr extends ThesardsMgrModel {
 
     public function add() {
         if ($this->isEmptyInput()) {
-            header("location: ../../public/gestion-des-thesards.php?action=add&error=emptyInput");
+            header("location: gestion-des-thesards.php?action=add&error=emptyInput");
             exit();
         }
         if ($this->isEmailInvalid()) {
-            header("location: ../../public/gestion-des-thesards.php?action=add&error=emailInvalid");
+            header("location: gestion-des-thesards.php?action=add&error=emailInvalid");
             exit();
         }
         if ($this->isEmailTaken()) {
-            header("location: ../../public/gestion-des-thesards.php?action=add&error=emailTaken");
+            header("location: gestion-des-thesards.php?action=add&error=emailTaken");
             exit();
         }
         if ($this->passwordMinLength()) {
-            header("location: ../../public/gestion-des-thesards.php?action=add&error=passwordLength");
+            header("location: gestion-des-thesards.php?action=add&error=passwordLength");
             exit();
         }
 

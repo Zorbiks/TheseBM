@@ -31,7 +31,7 @@ class DemandesModel extends Dbh {
             }
 
             if ($stmt->rowCount() === 0) {
-                header("location: ../../public/connexion.php?error=incorrectCredentials");
+                header("location: connexion.php?error=incorrectCredentials");
                 exit();
             }
 

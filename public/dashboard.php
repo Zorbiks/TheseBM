@@ -1,16 +1,16 @@
-<?php include_once "../app/includes/checklogin.inc.php" ?>
-<?php include_once "../app/includes/components/head.html" ?>
+<?php include_once __DIR__ . "/../app/includes/checklogin.inc.php" ?>
+<?php include_once __DIR__ . "/../app/includes/components/head.html" ?>
 
 <title>ThèseBM - Dashboard</title>
 </head>
 <body>
     <div class="d-flex">
         <!-- Sidebar Navigation -->
-        <?php include_once "../app/includes/components/navbar.php"; ?>
+        <?php include_once __DIR__ .  "/../app/includes/components/navbar.php"; ?>
 
         <div class="flex-grow-1 main-content-wrapper">
             <!-- Header -->
-            <?php include_once "../app/includes/components/header.php"; ?>
+            <?php include_once __DIR__ . "/../app/includes/components/header.php"; ?>
 
             <!-- Start Main Content -->
             <main>
