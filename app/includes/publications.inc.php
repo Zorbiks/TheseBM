@@ -59,10 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
 
     $action = $_GET["action"];
 
-    if ($action === "delete") {
+    if ($action === "delete" && empty($_GET["error"])) {
         $pubMgr = new PublicationContr($_GET["id"]);
         $pubMgr->delete();
-        header("location: publications.php?action=delete&error=none");
         exit();
     } elseif ($action === "search") {
         $pubMgr = new PublicationContr($_GET["search"], $_GET["filter"]);
