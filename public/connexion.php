@@ -10,6 +10,8 @@
         exit();
     }
 
+    include_once __DIR__ . "/../app/classes/views/login_view.class.php";
+
     // Import login logic
     include_once __DIR__ . "/../app/includes/login.inc.php";
 ?>
@@ -38,7 +40,6 @@
     </header>
     <main>
         <?php
-            include_once "../app/classes/views/login_view.class.php";
             $view = new LoginView();
             $view->renderErrorPopup();
         ?>

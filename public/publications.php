@@ -1,10 +1,10 @@
 <?php
-    include_once "../app/includes/checklogin.inc.php";
-    include_once "../app/includes/components/head.html";
+    include_once __DIR__ . "/../app/includes/checklogin.inc.php";
+    include_once __DIR__ . "/../app/includes/components/head.html";
 
-    include_once "../app/classes/models/dbh.class.php";
-    include_once "../app/classes/models/publications_model.class.php";
-    include_once "../app/classes/views/publications_view.class.php";
+    include_once __DIR__ . "/../app/classes/models/dbh.class.php";
+    include_once __DIR__ . "/../app/classes/models/publications_model.class.php";
+    include_once __DIR__ . "/../app/classes/views/publications_view.class.php";
 
     // Include managing publications logic
     include_once __DIR__ . "/../app/includes/publications.inc.php";
@@ -15,12 +15,12 @@
 <body>
     <div class="d-flex">
         <!-- Sidebar Navigation -->
-        <?php include_once "../app/includes/components/navbar.php" ?>
+        <?php include_once __DIR__ . "/../app/includes/components/navbar.php" ?>
 
         <div class="flex-grow-1 main-content-wrapper">
             <!-- Header -->
             <?php
-            include_once "../app/includes/components/header.php";
+            include_once __DIR__ . "/../app/includes/components/header.php";
             ?>
 
             <!-- Start Main Content -->
