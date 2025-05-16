@@ -1,6 +1,6 @@
 <?php
 
-if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["action"]) && empty($_GET["error"])) {
+if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["action"]) && (!isset($_GET["error"]) || $_GET["error"] !== "none")) {
     $action = $_GET["action"];
 
     include_once __DIR__ . "/../classes/models/dbh.class.php";
