@@ -23,7 +23,6 @@ include_once __DIR__ . "/../app/classes/views/thesards_view.class.php";
                 <div class="container">
                     <div>
                         <h3>Thésards</h3>
-                        <p>Liste de tous les thésards sur la plateforme</p>
                         <?php
                             $view = new ThesardView();
                             $view->renderThesardsTable();

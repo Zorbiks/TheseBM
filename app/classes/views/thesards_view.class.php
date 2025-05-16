@@ -2,12 +2,12 @@
 
 class ThesardView extends ThesardsModel {
     public function renderThesardsTable() {
-
         $thesards = $this->getAllThesards();
 
-        // echo print_r($thesards);
-
-        ?>
+        if (count($thesards) === 0): ?>
+            <p>Il n'y a pas de thésards sur la plateforme.</p>
+        <?php else: ?>
+            <p>Liste de tous les thésards sur la plateforme</p>
             <div class="table-responsive">
                 <table class="table table-striped text-nowrap">
                     <thead>
@@ -37,6 +37,7 @@ class ThesardView extends ThesardsModel {
                     </tbody>
                 </table>
             </div>
-        <?php
+            <?php
+        endif;  
     }
 }
