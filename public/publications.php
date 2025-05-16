@@ -29,38 +29,7 @@
                 <div class="container">
                     <div>
                         <h3>Publications</h3>
-                        <div class="d-flex gap-5 justify-content-end">
-                            <!-- Button trigger modal -->
-                            <?php if ($_SESSION["role"] === "thesard"): ?>
-                                <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addPublicationModal">
-                                    <i class="fa-solid fa-plus fa-fw"></i>
-                                    Ajouter publication
-                                </button>
-                            <?php endif; ?>
-
-                            <?php if ($_SESSION["role"] === "professeur"): ?>
-                                <button type="button" class="btn btn-primary mb-2">
-                                    <i class="fa-solid fa-file-export fa-fw"></i>
-                                    Exporter
-                                </button>
-                            <?php endif; ?>
-
-                            <form>
-                                <div class="d-flex gap-2">
-                                    <select class="form-select" name="filter">
-                                        <option value="titre" selected>Titre</option>
-                                        <option value="thesard">Thésard</option>
-                                        <option value="auteurs">Auteurs</option>
-                                        <option value="doi">DOI</option>
-                                        <option value="reference">Référence</option>
-                                    </select>
-                                    <input type="text" class="form-control" name="search" placeholder="Rechercher">
-                                    <button type="submit" class="btn btn-primary" name="action" value="search">
-                                        <i class="fa-solid fa-magnifying-glass fa-fw"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                        
 
                         <?php
                             $view = new PublicationsView();
