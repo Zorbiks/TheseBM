@@ -27,13 +27,12 @@ class PublicationContr extends PublicationModel {
     public function __construct(...$args) {
         echo count($args);
         if (count($args) === 1) {
-            echo "one";
             $this->handleOneParameter($args[0]);
         } elseif (count($args) === 2) {
-            echo "two";
             $this->handleTwoParameter($args[0], $args[1]);
+        } elseif (count($args) === 3) {
+            $this->handleTwoParameter($args[0], $args[1], $args[2]);
         } elseif (count($args) === 14) {
-            echo "13";
             $this->handleFourteenParameter(
                 $args[0],
                 $args[1],
@@ -62,6 +61,12 @@ class PublicationContr extends PublicationModel {
     private function handleTwoParameter($searchQuery, $filter) {
         $this->searchQuery = $searchQuery;
         $this->filter = $filter;
+    }
+
+    private function handleThreeParameter($searchQuery, $filter, $thesard_id) {
+        $this->searchQuery = $searchQuery;
+        $this->filter = $filter;
+        $this->thesard_id = $thesard_id;
     }
 
     private function handleFourteenParameter(
@@ -101,7 +106,12 @@ class PublicationContr extends PublicationModel {
     }
 
     public function search() {
-        $results = $this->getPublicationsByFilter($this->searchQuery, $this->filter);
+        $results = "";
+        if (empty($this->thesard_id)) {
+            $results = $this->getPublicationsByFilter($this->searchQuery, $this->filter);
+        } else {
+            $results = $this->getPublicationsByFilterAndThesardId($this->searchQuery, $this->filter, $this->thesard_id);
+        }
 
         // Send results back to index
         header("Location: publications.php?results=" . urlencode(serialize($results)));

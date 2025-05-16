@@ -49,7 +49,11 @@ class PublicationsView extends PublicationModel {
 
 
         if ($_SESSION["role"] === "thesard") {
-            $publications = $this->getPublicationsByThesardId($_SESSION["id"]);
+            if (isset($_GET["results"])) {
+                $publications = unserialize(urldecode($_GET['results']));
+            } else {
+                $publications = $this->getPublicationsByThesardId($_SESSION["id"]);
+            }
         } elseif ($_SESSION["role"] === "professeur") {
             if (isset($_GET["results"])) {
                 $publications = unserialize(urldecode($_GET['results']));

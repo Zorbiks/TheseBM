@@ -122,6 +122,44 @@ class PublicationModel extends Dbh {
         }
     }
 
+    protected function getPublicationsByFilterAndThesardId($searchQuery, $filter, $thesard_id) {
+        $sql = "";
+
+        switch ($filter) {
+            case "titre":
+                $sql = "SELECT * FROM publications WHERE titre LIKE ? AND thesard_id = ?;";
+                break;
+            case "thesard":
+                $sql = "SELECT * FROM publications WHERE soumis_par LIKE ? AND thesard_id = ?;";
+                break;
+            case "auteurs":
+                $sql = "SELECT * FROM publications WHERE auteurs LIKE ? AND thesard_id = ?;";
+                break;
+            case "doi":
+                $sql = "SELECT * FROM publications WHERE doi LIKE ? AND thesard_id = ?;";
+                break;
+            case "reference":
+                $sql = "SELECT * FROM publications WHERE reference LIKE ? AND thesard_id = ?;";
+                break;
+        }
+
+        try {
+            $dbh = $this->connect();
+            $stmt = $dbh->prepare($sql);
+
+            // Close the connection and stop the script on failure
+            $searchTerm = '%' . $searchQuery . '%';
+            if (!$stmt->execute([$searchTerm, $thesard_id])) {
+                throw new Exception("Database query execution failed.");
+            }
+
+            $result = $stmt->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     protected function deletePublication($id) {
         try {
             $sql = "DELETE FROM publications WHERE id = ?;";

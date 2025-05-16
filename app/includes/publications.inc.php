@@ -64,8 +64,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
         $pubMgr->delete();
         exit();
     } elseif ($action === "search") {
-        $pubMgr = new PublicationContr($_GET["search"], $_GET["filter"]);
-        $pubMgr->search();
+        if ($_SESSION["role"] === "professeur") {
+            $pubMgr = new PublicationContr($_GET["search"], $_GET["filter"]);
+            $pubMgr->search();
+        } elseif ($_SESSION["role"] === "thesard") {
+            $pubMgr = new PublicationContr($_GET["search"], $_GET["filter"], $_SESSION["id"]);
+            $pubMgr->search();
+        }
         exit();
     }
 }
