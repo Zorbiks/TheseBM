@@ -2,9 +2,16 @@
 
 class PublicationContr extends PublicationModel {
     private $id;
+
+    // Attributes related to search
+    private $searchQuery;
+    private $filter;
+
+    // Attributes related to publication
     private $reference;
     private $titre;
     private $auteurs;
+    private $soumisPar;
     private $lieu;
     private $doi;
     private $date;
@@ -18,10 +25,16 @@ class PublicationContr extends PublicationModel {
 
     // Constructor "overloading"
     public function __construct(...$args) {
+        echo count($args);
         if (count($args) === 1) {
+            echo "one";
             $this->handleOneParameter($args[0]);
-        } elseif (count($args) === 13) {
-            $this->handleThirteenParameter(
+        } elseif (count($args) === 2) {
+            echo "two";
+            $this->handleTwoParameter($args[0], $args[1]);
+        } elseif (count($args) === 14) {
+            echo "13";
+            $this->handleFourteenParameter(
                 $args[0],
                 $args[1],
                 $args[2],
@@ -34,7 +47,8 @@ class PublicationContr extends PublicationModel {
                 $args[9],
                 $args[10],
                 $args[11],
-                $args[12]
+                $args[12],
+                $args[13],
             );
         } else {
             throw new InvalidArgumentException('Invalid number of arguments passed to constructor');
@@ -45,10 +59,16 @@ class PublicationContr extends PublicationModel {
         $this->id = $id;
     }
 
-    private function handleThirteenParameter(
+    private function handleTwoParameter($searchQuery, $filter) {
+        $this->searchQuery = $searchQuery;
+        $this->filter = $filter;
+    }
+
+    private function handleFourteenParameter(
         $reference,
         $titre,
         $auteurs,
+        $soumisPar,
         $lieu,
         $doi,
         $date,
@@ -63,6 +83,7 @@ class PublicationContr extends PublicationModel {
         $this->reference = $reference;
         $this->titre = $titre;
         $this->auteurs = $auteurs;
+        $this->soumisPar = $soumisPar;
         $this->lieu = $lieu;
         $this->doi = $doi;
         $this->date = $date;
@@ -77,6 +98,14 @@ class PublicationContr extends PublicationModel {
 
     public function delete() {
         $this->deletePublication($this->id);
+    }
+
+    public function search() {
+        $results = $this->getPublicationsByFilter($this->searchQuery, $this->filter);
+
+        // Send results back to index
+        header("Location: publications.php?results=" . urlencode(serialize($results)));
+        exit();
     }
 
     public function add() {
@@ -108,6 +137,7 @@ class PublicationContr extends PublicationModel {
             $this->reference,
             $this->titre,
             $this->auteurs,
+            $this->soumisPar,
             $this->lieu,
             $this->doi,
             $this->date,

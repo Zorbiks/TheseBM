@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
     $rapport     = $_FILES["rapport"];
     $thesard_id  = $_SESSION["id"];
 
+
     // these input fields are optional, they will be filled with "-" as a placeholder
     if (empty($numero)) {
         $numero = "-";
@@ -28,13 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
     if (empty($volume)) {
         $volume = "-";
     }
-
     if ($action === "add") {
-        session_start();
         $pubMgr = new PublicationContr(
             $reference,
             $titre,
             $auteurs,
+            $_SESSION["firstName"] . " " . $_SESSION["lastName"],
             $lieu,
             $doi,
             $date,
@@ -48,7 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
         );
 
         $pubMgr->add();
-        header("location: ../../public/publications.php?action=add&error=none");
+
+        header("location: publications.php?action=add&error=none");
         exit();
     }
 } elseif ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["action"])) {
@@ -61,8 +62,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
     if ($action === "delete") {
         $pubMgr = new PublicationContr($_GET["id"]);
         $pubMgr->delete();
-
         header("location: publications.php?action=delete&error=none");
+        exit();
+    } elseif ($action === "search") {
+        $pubMgr = new PublicationContr($_GET["search"], $_GET["filter"]);
+        $pubMgr->search();
         exit();
     }
 }

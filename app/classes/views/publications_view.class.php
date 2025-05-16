@@ -1,7 +1,6 @@
 <?php
 
-class PublicationsView extends PublicationModel
-{
+class PublicationsView extends PublicationModel {
     public function renderErrorPopup() {
         if (isset($_GET["error"])) {
             $message = "";
@@ -48,10 +47,15 @@ class PublicationsView extends PublicationModel
     public function renderPublicationsTable() {
         $publications = null;
 
+
         if ($_SESSION["role"] === "thesard") {
             $publications = $this->getPublicationsByThesardId($_SESSION["id"]);
         } elseif ($_SESSION["role"] === "professeur") {
-            $publications = $this->getAllPublications();
+            if (isset($_GET["results"])) {
+                $publications = unserialize(urldecode($_GET['results']));
+            } else {
+                $publications = $this->getAllPublications();
+            }
         }
 
         if (!$publications || count($publications) === 0): ?>
@@ -91,7 +95,7 @@ class PublicationsView extends PublicationModel
                                 <td><?= $publication["lieu"] ?></td>
                                 <td><?= $publication["doi"] ?></td>
                                 <td><?= $publication["type"] ?></td>
-                                <td><?= $publication["thesard_id"] ?></td>
+                                <td><?= $publication["soumis_par"] ?></td>
                                 <td>
                                     <a class="btn btn-success" href="../<?= $publication["attestation"] ?>" download>
                                         <i class="fa-solid fa-download fa-fw"></i>

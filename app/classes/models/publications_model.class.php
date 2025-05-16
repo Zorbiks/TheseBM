@@ -5,6 +5,7 @@ class PublicationModel extends Dbh {
         $reference,
         $titre,
         $auteurs,
+        $soumisPar,
         $lieu,
         $doi,
         $date,
@@ -17,7 +18,7 @@ class PublicationModel extends Dbh {
         $thesard_id
     ) {
         try {
-            $sql = "INSERT INTO `publications` (`id`, `reference`, `titre`, `auteurs`, `lieu`, `doi`, `date`, `type`, `numero`, `volume`, `attestation`, `publication`, `rapport`, `thesard_id`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO `publications` (`id`, `reference`, `titre`, `auteurs`, `soumis_par`, `lieu`, `doi`, `date`, `type`, `numero`, `volume`, `attestation`, `publication`, `rapport`, `thesard_id`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             $dbh = $this->connect();
             $stmt = $dbh->prepare($sql);
@@ -27,6 +28,7 @@ class PublicationModel extends Dbh {
                 $reference,
                 $titre,
                 $auteurs,
+                $soumisPar,
                 $lieu,
                 $doi,
                 $date,
@@ -77,6 +79,44 @@ class PublicationModel extends Dbh {
             }
 
             return $result->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    protected function getPublicationsByFilter($searchQuery, $filter) {
+        $sql = "";
+
+        switch ($filter) {
+            case "titre":
+                $sql = "SELECT * FROM publications WHERE titre LIKE ?;";
+                break;
+            case "thesard":
+                $sql = "SELECT * FROM publications WHERE soumis_par LIKE ?;";
+                break;
+            case "auteurs":
+                $sql = "SELECT * FROM publications WHERE auteurs LIKE ?;";
+                break;
+            case "doi":
+                $sql = "SELECT * FROM publications WHERE doi LIKE ?;";
+                break;
+            case "reference":
+                $sql = "SELECT * FROM publications WHERE reference LIKE ?;";
+                break;
+        }
+
+        try {
+            $dbh = $this->connect();
+            $stmt = $dbh->prepare($sql);
+
+            // Close the connection and stop the script on failure
+            $searchTerm = '%' . $searchQuery . '%';
+            if (!$stmt->execute([$searchTerm])) {
+                throw new Exception("Database query execution failed.");
+            }
+
+            $result = $stmt->fetchAll();
+            return $result;
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

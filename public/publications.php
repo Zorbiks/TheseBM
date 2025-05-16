@@ -8,6 +8,7 @@
 
     // Include managing publications logic
     include_once __DIR__ . "/../app/includes/publications.inc.php";
+
 ?>
 
 <title>ThèseBM - Publications</title>
@@ -51,6 +52,7 @@
                                         <option value="thesard">Thésard</option>
                                         <option value="auteurs">Auteurs</option>
                                         <option value="doi">DOI</option>
+                                        <option value="reference">Référence</option>
                                     </select>
                                     <input type="text" class="form-control" name="search" placeholder="Rechercher">
                                     <button type="submit" class="btn btn-primary" name="action" value="search">
