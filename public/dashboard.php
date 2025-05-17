@@ -1,5 +1,13 @@
-<?php include_once __DIR__ . "/../app/includes/checklogin.inc.php" ?>
-<?php include_once __DIR__ . "/../app/includes/components/head.html" ?>
+<?php
+include_once __DIR__ . "/../app/includes/checklogin.inc.php";
+include_once __DIR__ . "/../app/includes/components/head.html";
+
+include_once __DIR__ . "/../app/classes/models/dbh.class.php";
+include_once __DIR__ . "/../app/classes/models/dashboard_model.class.php";
+include_once __DIR__ . "/../app/classes/views/dashboard_view.class.php";
+
+$view = new DashboardView();
+?>
 
 <title>ThèseBM - Dashboard</title>
 </head>
@@ -24,42 +32,12 @@
                                         <div class="card-body d-flex flex-column justify-content-center">
                                             <div class="fw-bold fs-5 mb-5">Publications</div>
                                             <div class="row">
-                                                <div class="col-md-6 col-lg-3 border-end border-3">
-                                                    <div class="fw-bold fs-5">Publications</div>
-                                                    <div class="fw-bold fs-5">16</div>
-                                                </div>
-                                                <div class="col-md-6 col-lg-3 border-end border-3">
-                                                    <div class="fw-bold fs-5">Communications</div>
-                                                    <div class="fw-bold fs-5">4</div>
-                                                </div>
-                                                <div class="col-md-6 col-lg-3 border-end border-3">
-                                                    <div class="fw-bold fs-5">Conférences</div>
-                                                    <div class="fw-bold fs-5">2</div>
-                                                </div>
-                                                <div class="col-md-6 col-lg-3">
-                                                    <div class="fw-bold fs-5">Chapitres</div>
-                                                    <div class="fw-bold fs-5">5</div>
-                                                </div>
+                                                <?php $view->renderPublicationStats(); ?>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="card text-center h-100">
-                                        <div class="card-body d-flex flex-column justify-content-center">
-                                            <div class="fw-bold fs-5">Thésards</div>
-                                            <div class="fw-bold fs-5">16</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card text-center h-100">
-                                        <div class="card-body d-flex flex-column justify-content-center">
-                                            <div class="fw-bold fs-5">Demandes d'inscription</div>
-                                            <div class="fw-bold fs-5">16</div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php $view->renderThesardStats(); ?>
                             </div>
                         </div>
                     </div>
