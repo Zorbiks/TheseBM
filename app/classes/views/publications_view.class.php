@@ -64,6 +64,15 @@ class PublicationsView extends PublicationModel {
 
         if (!$publications || count($publications) === 0): ?>
             <p>Il n'y a aucune publication pour le moment.</p>
+            <div class="d-flex gap-5 justify-content-end">
+                <!-- Button trigger modal -->
+                <?php if ($_SESSION["role"] === "thesard"): ?>
+                    <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addPublicationModal">
+                        <i class="fa-solid fa-plus fa-fw"></i>
+                        Ajouter publication
+                    </button>
+                <?php endif; ?>
+            </div>
         <?php else: ?>
             <div class="d-flex gap-5 justify-content-end">
                 <!-- Button trigger modal -->
