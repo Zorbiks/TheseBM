@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 24, 2025 at 08:31 PM
+-- Generation Time: May 24, 2025 at 11:30 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `journal` (
   `id` int(11) NOT NULL,
-  `thesard_id` int(11) NOT NULL,
+  `thesard` varchar(255) NOT NULL,
   `action` varchar(63) NOT NULL,
-  `publication_id` int(11) NOT NULL,
+  `publication` varchar(255) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -83,16 +83,13 @@ CREATE TABLE `users` (
 -- Indexes for table `journal`
 --
 ALTER TABLE `journal`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FOREIGN_thesard_id` (`thesard_id`),
-  ADD KEY `FOREIGN_publication_id` (`publication_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `publications`
 --
 ALTER TABLE `publications`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FOREIGN_thesard_id` (`thesard_id`) USING BTREE;
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -121,23 +118,6 @@ ALTER TABLE `publications`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `journal`
---
-ALTER TABLE `journal`
-  ADD CONSTRAINT `FOREIGN_publication_id` FOREIGN KEY (`publication_id`) REFERENCES `publications` (`id`),
-  ADD CONSTRAINT `FOREIGN_thesard_id` FOREIGN KEY (`thesard_id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `publications`
---
-ALTER TABLE `publications`
-  ADD CONSTRAINT `thesard_id` FOREIGN KEY (`thesard_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

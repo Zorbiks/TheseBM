@@ -50,9 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
             $_SESSION["id"]
         );
 
-        $publication_id = $pubMgr->add();
+        $pubMgr->add();
 
-        $journal = new JournalContr($thesard_id, "a ajouté", $publication_id);
+        $journal = new JournalContr($_SESSION["firstName"] . " " . $_SESSION["lastName"], "a ajouté", $titre);
         $journal->addJournal();
         
         header("location: publications.php?action=add&error=none");
@@ -63,11 +63,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
     include_once __DIR__ . "/../classes/models/publications_model.class.php";
     include_once __DIR__ . "/../classes/controllers/publications_contr.class.php";
 
+    include_once __DIR__ . "/../classes/models/dashboard_model.class.php";
+    include_once __DIR__ . "/../classes/controllers/journal_contr.class.php";
+
     $action = $_GET["action"];
 
     if ($action === "delete" && empty($_GET["error"])) {
         $pubMgr = new PublicationContr($_GET["id"]);
+
+        
+        $journal = new JournalContr(
+            $_SESSION["firstName"] . " " . $_SESSION["lastName"],
+            "a supprimé",
+            $pubMgr->getPublicationTitle($_GET["id"])
+        );
+
+        $journal->addJournal();
+
         $pubMgr->delete();
+        
+        header("location: publications.php?action=delete&error=none");
         exit();
     } elseif ($action === "search") {
         if ($_SESSION["role"] === "professeur") {

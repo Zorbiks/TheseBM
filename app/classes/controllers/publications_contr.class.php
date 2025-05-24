@@ -143,7 +143,7 @@ class PublicationContr extends PublicationModel {
             }
         }
 
-        $publication_id = $this->setPublication(
+        $this->setPublication(
             $this->reference,
             $this->titre,
             $this->auteurs,
@@ -172,8 +172,10 @@ class PublicationContr extends PublicationModel {
             $this->rapport["tmp_name"],
             __DIR__ . "/../../../uploads/rapports/" . $this->rapport["name"]
         );
+    }
 
-        return $publication_id;
+    public function getPublicationTitle($publication_id) {
+        return $this->getPublicationTitleById($publication_id);
     }
 
     private function isEmptyInput() {

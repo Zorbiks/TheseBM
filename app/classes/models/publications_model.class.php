@@ -42,8 +42,6 @@ class PublicationModel extends Dbh {
             ])) {
                 throw new Exception("Database query execution failed.");
             }
-
-            return $dbh->lastInsertId();
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -63,6 +61,25 @@ class PublicationModel extends Dbh {
 
             $result = $stmt->fetchAll();
             return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    protected function getPublicationTitleById($publication_id) {
+        try {
+            $sql = "SELECT titre FROM publications WHERE id = ?;";
+
+            $dbh = $this->connect();
+            $stmt = $dbh->prepare($sql);
+
+            // Close the connection and stop the script on failure
+            if (!$stmt->execute([$publication_id])) {
+                throw new Exception("Database query execution failed.");
+            }
+
+            $result = $stmt->fetch();
+            return $result["titre"];
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

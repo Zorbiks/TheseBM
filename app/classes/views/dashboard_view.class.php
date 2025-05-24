@@ -60,9 +60,9 @@ class DashboardView extends DashboardModel {
                         foreach($journal as $event):
                     ?>
                     <div class="event py-2">
-                        <span class="fw-bold"><?= $this->getThesardFullNameById($event["thesard_id"]) ?></span>,
+                        <span class="fw-bold"><?= $event["thesard"] ?></span>
                         <span class="fw-bold text-primary"><?= $event["action"] ?></span>
-                        <span><?= $this->getPublicationTitleById($event["publication_id"]) ?></span>
+                        <span><?= $event["publication"] ?></span>
                         <span class="fw-bold text-primary"><?= $event["date"] ?></span>
                     </div>
                     <?php
