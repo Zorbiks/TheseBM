@@ -43,13 +43,15 @@ $view = new DashboardView();
                     </div>
                     <div class="journal">
                         <h3>Journalisation</h3>
-                        <div class="card">
+                        <?php $view->renderJournal(); ?>
+
+                        <!-- <div class="card">
                             <div class="card-body py-0">
                                 <div class="event py-2">
                                     <span class="fw-bold">Ahmad Mohammed</span>,
-                                    <span class="text-success fw-bold">a ajouté</span>
+                                    <span class="fw-bold text-primary">a ajouté</span>
                                     <span>Lorem Ipsum Dolor Sit Amet Consectetur Adipiscing Elit Integer Nec Odio. Praesent Libero</span>
-                                    <span class="fw-bold text-body-tertiary">2025-4-15 17:40:22</span>
+                                    <span class="fw-bold text-primary">2025-4-15 17:40:22</span>
                                 </div>
                                 <div class="event py-2">
                                     <span class="fw-bold">Mahmoud Ali</span>,
@@ -64,7 +66,7 @@ $view = new DashboardView();
                                     <span class="fw-bold text-body-tertiary">2025-4-24 10:10:00</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </main>

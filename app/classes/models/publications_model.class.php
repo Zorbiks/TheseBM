@@ -42,6 +42,8 @@ class PublicationModel extends Dbh {
             ])) {
                 throw new Exception("Database query execution failed.");
             }
+
+            return $dbh->lastInsertId();
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

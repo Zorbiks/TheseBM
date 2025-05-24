@@ -25,7 +25,6 @@ class PublicationContr extends PublicationModel {
 
     // Constructor "overloading"
     public function __construct(...$args) {
-        echo count($args);
         if (count($args) === 1) {
             $this->handleOneParameter($args[0]);
         } elseif (count($args) === 2) {
@@ -118,6 +117,7 @@ class PublicationContr extends PublicationModel {
         exit();
     }
 
+
     public function add() {
         if ($this->isEmptyInput()) {
             header("location: publications.php?error=emptyInput");
@@ -143,7 +143,7 @@ class PublicationContr extends PublicationModel {
             }
         }
 
-        $this->setPublication(
+        $publication_id = $this->setPublication(
             $this->reference,
             $this->titre,
             $this->auteurs,
@@ -172,6 +172,8 @@ class PublicationContr extends PublicationModel {
             $this->rapport["tmp_name"],
             __DIR__ . "/../../../uploads/rapports/" . $this->rapport["name"]
         );
+
+        return $publication_id;
     }
 
     private function isEmptyInput() {

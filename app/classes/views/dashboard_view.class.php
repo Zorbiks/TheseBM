@@ -45,4 +45,32 @@ class DashboardView extends DashboardModel {
         </div>
 <?php
     }
+
+    public function renderJournal() {
+        $journal = $this->getJournal();
+        if (count($journal) === 0):
+            ?>
+            <p>Il n'y a pas d'événements pour le moment.</p>
+            <?php
+        else:
+            ?>
+            <div class="card">
+                <div class="card-body py-0">
+                    <?php
+                        foreach($journal as $event):
+                    ?>
+                    <div class="event py-2">
+                        <span class="fw-bold"><?= $this->getThesardFullNameById($event["thesard_id"]) ?></span>,
+                        <span class="fw-bold text-primary"><?= $event["action"] ?></span>
+                        <span><?= $this->getPublicationTitleById($event["publication_id"]) ?></span>
+                        <span class="fw-bold text-primary"><?= $event["date"] ?></span>
+                    </div>
+                    <?php
+                        endforeach;
+                    ?>
+                </div>
+            </div>
+            <?php
+        endif;
+    }
 }

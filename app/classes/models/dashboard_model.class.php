@@ -65,4 +65,80 @@ class DashboardModel extends Dbh {
             return ['active' => 0, 'inactive' => 0];
         }
     }
+    
+    protected function setJournal($thesard_id, $action, $publication_id) {
+        try {
+            $sql = "INSERT INTO journal (thesard_id, action, publication_id, date) VALUES (?, ?, ?, current_timestamp())";
+            $dbh = $this->connect();
+            $stmt = $dbh->prepare($sql);
+
+            // Close the connection and stop the script on failure
+            if (!$stmt->execute([$thesard_id, $action, $publication_id])) {
+                throw new Exception("Database query execution failed.");
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    protected function getJournal() {
+        try {
+            $sql = "SELECT * FROM journal;";
+            $dbh = $this->connect();
+            $stmt = $dbh->prepare($sql);
+
+            // Close the connection and stop the script on failure
+            if (!$stmt->execute()) {
+                throw new Exception("Database query execution failed.");
+            }
+
+            $results = $stmt->fetchAll();
+            return $results;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    protected function getThesardFullNameById($thesard_id) {
+        try {
+            $sql = "SELECT prenom, nom FROM users WHERE id = ?;";
+            $dbh = $this->connect();
+            $stmt = $dbh->prepare($sql);
+    
+            // Close the connection and stop the script on failure
+            if (!$stmt->execute([$thesard_id])) {
+                throw new Exception("Database query execution failed.");
+            }
+    
+            $results = $stmt->fetch();
+            if ($results) {
+                return $results['prenom'] . ' ' . $results['nom'];
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+    
+
+    protected function getPublicationTitleById($publication_id) {
+        try {
+            $sql = "SELECT titre FROM publications WHERE id = ?;";
+            $dbh = $this->connect();
+            $stmt = $dbh->prepare($sql);
+    
+            // Execute the statement
+            if (!$stmt->execute([$publication_id])) {
+                throw new Exception("Database query execution failed.");
+            }
+    
+            $result = $stmt->fetch();
+    
+            if ($result) {
+                return $result['titre'];
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+    
 }

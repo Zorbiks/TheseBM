@@ -30,7 +30,6 @@
                     <div>
                         <h3>Publications</h3>
                         
-
                         <?php
                             $view = new PublicationsView();
                             $view->renderErrorPopup();

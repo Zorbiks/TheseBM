@@ -7,6 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
     include_once __DIR__ . "/../classes/models/publications_model.class.php";
     include_once __DIR__ . "/../classes/controllers/publications_contr.class.php";
 
+    include_once __DIR__ . "/../classes/models/dashboard_model.class.php";
+    include_once __DIR__ . "/../classes/controllers/journal_contr.class.php";
+    
     $reference   = $_POST["reference"];
     $titre       = $_POST["titre"];
     $auteurs     = $_POST["auteurs"];
@@ -47,8 +50,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
             $_SESSION["id"]
         );
 
-        $pubMgr->add();
+        $publication_id = $pubMgr->add();
 
+        $journal = new JournalContr($thesard_id, "a ajouté", $publication_id);
+        $journal->addJournal();
+        
         header("location: publications.php?action=add&error=none");
         exit();
     }
