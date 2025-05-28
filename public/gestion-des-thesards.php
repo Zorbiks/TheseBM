@@ -77,12 +77,14 @@ include_once __DIR__ . "/../app/includes/thesards-mgr.inc.php";
                             </div>
                         </div>
 
+
                         <?php
                             $view = new ThesardsMgrView();
                             $view->renderErrorPopup();
                             $view->renderThesardsTable();
                         ?>
                         
+                        <?php include_once __DIR__ . "/../app/includes/components/confirm-delete.html" ?>
                     </div>
                 </div>
             </main>

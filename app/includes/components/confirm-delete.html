@@ -1,0 +1,36 @@
+<div class="modal fade" id="confirmDeletionModal" tabindex="-1" aria-labelledby="confirmDeletionModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="confirmDeletionModalLabel">Confirmer la suppression</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-xmark"></i>
+                    Annuler
+                </button>
+                <a id="confirmDeletionBtn" href="#" class="btn btn-danger">
+                    <i class="fa-solid fa-trash-can fw-fa"></i>
+                    Confirmer
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script defer>
+
+    const deleteBtns = document.querySelectorAll(".delete-btn");
+
+    deleteBtns.forEach((btn) => {
+        btn.addEventListener("click", function () {
+            const id = this.dataset.tbmId;
+            const confirmDeleteBtn = document.getElementById("confirmDeletionBtn");
+            confirmDeleteBtn.href = `?id=${id}&action=delete`;
+        });
+    })
+
+</script>

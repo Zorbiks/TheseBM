@@ -35,6 +35,9 @@
                             $view->renderErrorPopup();
                             $view->renderPublicationsTable();
                         ?>
+
+                        <?php include_once __DIR__ . "/../app/includes/components/confirm-delete.html" ?>
+
                         <?php if ($_SESSION["role"] === "thesard"): ?>
                             <!-- Start Modal -->
                             <div class="modal fade" id="addPublicationModal" tabindex="-1" aria-labelledby="addPublicationModal" aria-hidden="true">

@@ -169,10 +169,10 @@ class PublicationsView extends PublicationModel {
                                             <i class="fa-solid fa-pen fa-fw"></i>
                                             Modifier
                                         </a>
-                                        <a class="btn btn-danger" href="?action=delete&id=<?= $publication["id"] ?>">
-                                            <i class="fa-solid fa-trash-can fa-fw"></i>
+                                        <button type="button" class="btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#confirmDeletionModal" data-tbm-id="<?= $publication["id"] ?>">
+                                            <i class="fa-solid fa-trash-can fw-fa"></i>
                                             Supprimer
-                                        </a>
+                                        </button>
                                     </td>
                                 <?php endif; ?>
                             </tr>

@@ -28,10 +28,10 @@ class ThesardsMgrView extends ThesardsMgrModel {
                                 <td><?= $thesard["nom"] ?></td>
                                 <td><?= $thesard["email"] ?></td>
                                 <td>
-                                    <a class="btn btn-danger" href="?id=<?= $thesard["id"] ?>&action=delete">
+                                <button type="button" class="btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#confirmDeletionModal" data-tbm-id="<?= $thesard["id"] ?>">
                                     <i class="fa-solid fa-trash-can fw-fa"></i>
-                                        Supprimer
-                                    </a>
+                                    Supprimer
+                                </button>
                                 </td>
                             </tr>
                         <?php
