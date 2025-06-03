@@ -15,7 +15,7 @@ class PublicationsView extends PublicationModel {
                     case "add":
                         $message = "La publication a été ajoutée avec succès";
                         break;
-                    case "modify":
+                    case "edit":
                         $message = "La publication a été modifiée avec succès";
                         break;
                 }
@@ -67,7 +67,7 @@ class PublicationsView extends PublicationModel {
             <div class="d-flex gap-5 justify-content-end">
                 <!-- Button trigger modal -->
                 <?php if ($_SESSION["role"] === "thesard"): ?>
-                    <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addPublicationModal">
+                    <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#publicationModal">
                         <i class="fa-solid fa-plus fa-fw"></i>
                         Ajouter publication
                     </button>
@@ -77,7 +77,7 @@ class PublicationsView extends PublicationModel {
             <div class="d-flex gap-5 justify-content-end">
                 <!-- Button trigger modal -->
                 <?php if ($_SESSION["role"] === "thesard"): ?>
-                    <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addPublicationModal">
+                    <button type="button" class="btn btn-primary mb-2" id="add-btn" data-bs-toggle="modal" data-bs-target="#publicationModal">
                         <i class="fa-solid fa-plus fa-fw"></i>
                         Ajouter publication
                     </button>
@@ -131,30 +131,30 @@ class PublicationsView extends PublicationModel {
                     <tbody class="align-middle">
                         <?php foreach ($publications as $publication): ?>
                             <tr>
-                                <td><?= $publication["reference"] ?></td>
-                                <td><?= $publication["titre"] ?></td>
-                                <td><?= $publication["auteurs"] ?></td>
-                                <td><?= $publication["numero"] ?></td>
-                                <td><?= $publication["volume"] ?></td>
-                                <td><?= $publication["date"] ?></td>
-                                <td><?= $publication["lieu"] ?></td>
-                                <td><?= $publication["doi"] ?></td>
-                                <td><?= $publication["type"] ?></td>
+                                <td class="reference"><?= $publication["reference"] ?></td>
+                                <td class="titre"><?= $publication["titre"] ?></td>
+                                <td class="auteurs"><?= $publication["auteurs"] ?></td>
+                                <td class="numero"><?= $publication["numero"] ?></td>
+                                <td class="volume"><?= $publication["volume"] ?></td>
+                                <td class="date"><?= $publication["date"] ?></td>
+                                <td class="lieu"><?= $publication["lieu"] ?></td>
+                                <td class="doi"><?= $publication["doi"] ?></td>
+                                <td class="type"><?= $publication["type"] ?></td>
                                 <td><?= $publication["soumis_par"] ?></td>
                                 <td>
-                                    <a class="btn btn-success" href="../<?= $publication["attestation"] ?>" download>
+                                    <a class="btn btn-success attestation" href="../<?= $publication["attestation"] ?>" download>
                                         <i class="fa-solid fa-download fa-fw"></i>
                                         Télécharger
                                     </a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-success" href="../<?= $publication["rapport"] ?>" download>
+                                    <a class="btn btn-success rapport" href="../<?= $publication["rapport"] ?>" download>
                                         <i class="fa-solid fa-download fa-fw"></i>
                                         Télécharger
                                     </a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-success" href="../<?= $publication["publication"] ?>" download>
+                                    <a class="btn btn-success publication" href="../<?= $publication["publication"] ?>" download>
                                         <i class="fa-solid fa-download fa-fw"></i>
                                         Télécharger
                                     </a>
@@ -165,10 +165,10 @@ class PublicationsView extends PublicationModel {
                                 </td>
                                 <?php if ($_SESSION["role"] === "thesard"): ?>
                                     <td>
-                                        <a class="btn btn-secondary" href="#">
+                                        <button type="button" class="btn btn-secondary modify-btn" data-bs-toggle="modal" data-bs-target="#publicationModal" data-tbm-id="<?= $publication["id"] ?>">
                                             <i class="fa-solid fa-pen fa-fw"></i>
                                             Modifier
-                                        </a>
+                                        </button>
                                         <button type="button" class="btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#confirmDeletionModal" data-tbm-id="<?= $publication["id"] ?>">
                                             <i class="fa-solid fa-trash-can fw-fa"></i>
                                             Supprimer

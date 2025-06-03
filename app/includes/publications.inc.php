@@ -57,6 +57,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
         
         header("location: publications.php?action=add&error=none");
         exit();
+    } elseif ($action === "edit") {
+        $pubMgr = new PublicationContr(
+            $_POST["pubid"],
+            $reference,
+            $titre,
+            $auteurs,
+            $lieu,
+            $doi,
+            $date,
+            $type,
+            $numero,
+            $volume,
+            $publication,
+            $attestation,
+            $rapport,
+        );
+
+        $pubMgr->modify();
+
+        $journal = new JournalContr($_SESSION["firstName"] . " " . $_SESSION["lastName"], "a modifié", $titre);
+        $journal->addJournal();
+        
+        header("location: publications.php?action=edit&error=none");
+        exit();
     }
 } elseif ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["action"])) {
     include_once __DIR__ . "/../classes/models/dbh.class.php";

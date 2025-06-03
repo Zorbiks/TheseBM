@@ -47,6 +47,83 @@ class PublicationModel extends Dbh {
         }
     }
 
+    protected function updatePublication(
+        $id,
+        $reference,
+        $titre,
+        $auteurs,
+        $lieu,
+        $doi,
+        $date,
+        $type,
+        $numero,
+        $volume,
+        $publication,
+        $attestation,
+        $rapport,
+    ) {
+        $publicationPath = "";
+        $attestationPath = "";
+        $rapportPath = "";
+        if (!empty($publication)) {
+            $publicationPath = "uploads/publications/" . $publication["name"];
+        }
+        if (!empty($attestation)) {
+            $attestationPath = "uploads/attestations/" . $attestation["name"];
+        }
+        if (!empty($rapport)) {
+            $rapportPath = "uploads/rapports/" . $rapport["name"];
+        }
+        $sql = "
+            UPDATE publications 
+            SET 
+                reference = :reference,
+                titre = :titre,
+                auteurs = :auteurs,
+                lieu = :lieu,
+                doi = :doi,
+                date = :date,
+                type = :type,
+                numero = :numero,
+                volume = :volume"
+                . (!empty($publicationPath) ? ", publication = :publicationPath" : "")
+                . (!empty($attestationPath) ? ", attestation = :attestationPath" : "")
+                . (!empty($rapportPath) ? ", rapport = :rapportPath" : "") . "
+            WHERE id = :id;
+        ";
+
+        try {
+            $dbh = $this->connect();
+            $stmt = $dbh->prepare($sql);
+
+            // Bind parameters
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':reference', $reference);
+            $stmt->bindParam(':titre', $titre);
+            $stmt->bindParam(':auteurs', $auteurs);
+            $stmt->bindParam(':lieu', $lieu);
+            $stmt->bindParam(':doi', $doi);
+            $stmt->bindParam(':date', $date);
+            $stmt->bindParam(':type', $type);
+            $stmt->bindParam(':numero', $numero);
+            $stmt->bindParam(':volume', $volume);
+
+            if (isset($publicationPath)) {
+                $stmt->bindParam(':publicationPath', $publicationPath);
+            }
+            if (isset($attestationPath)) {
+                $stmt->bindParam(':attestationPath', $attestationPath);
+            }
+            if (isset($rapportPath)) {
+                $stmt->bindParam(':rapportPath', $rapportPath);
+            }
+
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     protected function getPublicationsByThesardId($thesard_id) {
         try {
             $sql = "SELECT * FROM publications WHERE thesard_id = ?;";
