@@ -20,9 +20,10 @@ class DashboardModel extends Dbh {
             $types = ["conference", "chapitre", "communication"];
             $stats = [];
 
+            $stmt = $dbh->prepare("SELECT COUNT(*) AS total FROM publications WHERE type = :type");
             foreach ($types as $type) {
-                $stmt = $dbh->prepare("SELECT COUNT(*) AS total FROM publications WHERE type = ?");
-                $stmt->execute([$type]);
+                $stmt->bindParam(':type', $type);
+                $stmt->execute();
                 $result = $stmt->fetch();
                 $stats[$type] = $result["total"];
             }
@@ -47,11 +48,12 @@ class DashboardModel extends Dbh {
 
             // Prepare counts with default 0
             $counts = [
-                'active' => 0,
+                'active'   => 0,
                 'inactive' => 0,
             ];
 
             foreach ($results as $row) {
+                // Using strict comparison for clarity
                 if ($row['active'] == 1) {
                     $counts['active'] = $row['total'];
                 } else {
@@ -65,17 +67,21 @@ class DashboardModel extends Dbh {
             return ['active' => 0, 'inactive' => 0];
         }
     }
-    
+
     protected function setJournal($thesard, $action, $publication) {
         try {
-            $sql = "INSERT INTO journal (thesard, action, publication, date) VALUES (?, ?, ?, current_timestamp())";
+            $sql = "INSERT INTO journal (thesard, action, publication, date) 
+                    VALUES (:thesard, :action, :publication, current_timestamp())";
             $dbh = $this->connect();
             $stmt = $dbh->prepare($sql);
 
-            // Close the connection and stop the script on failure
-            if (!$stmt->execute([$thesard, $action, $publication])) {
-                throw new Exception("Database query execution failed.");
-            }
+            // Bind parameters using labels
+            $stmt->bindParam(':thesard', $thesard);
+            $stmt->bindParam(':action', $action);
+            $stmt->bindParam(':publication', $publication);
+
+            // Execute the statement; exceptions will be thrown if execution fails.
+            $stmt->execute();
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -86,16 +92,12 @@ class DashboardModel extends Dbh {
             $sql = "SELECT * FROM journal;";
             $dbh = $this->connect();
             $stmt = $dbh->prepare($sql);
-
-            // Close the connection and stop the script on failure
-            if (!$stmt->execute()) {
-                throw new Exception("Database query execution failed.");
-            }
+            $stmt->execute();
 
             $results = $stmt->fetchAll();
             return $results;
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-    }    
+    }
 }

@@ -25,6 +25,7 @@ class MailService {
 
         $this->serverEmailAddress = getenv("EMAIL_ADDRESS");
         $this->serverEmailPassword = getenv("EMAIL_PASSWORD");
+
     }
 
     public function sendMail() {

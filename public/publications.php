@@ -77,7 +77,6 @@
                                                     <label for="type" class="form-label">Type *</label>
                                                     <select class="form-select" id="type" name="type">
                                                         <option selected disabled>Sélectionnez un type</option>
-                                                        <option value="Publication">Publication</option>
                                                         <option value="Communication">Communication</option>
                                                         <option value="Conférence">Conférence</option>
                                                         <option value="Chapitre">Chapitre</option>

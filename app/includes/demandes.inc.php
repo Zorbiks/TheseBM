@@ -11,8 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["id"]) && isset($_GET["a
 
     $demande = new DemandesContr($id);
 
-    echo "$id $action";
-
     if ($action === "accept") {
         $demande->accept();
         header("location: demandes-inscription.php?action=accept&error=none");
