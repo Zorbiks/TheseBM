@@ -1,6 +1,7 @@
 <?php
 
 class PublicationContr extends PublicationModel {
+    // ID of the publication (used in deletion or modification)
     private $id;
 
     // Attributes related to search
@@ -23,14 +24,14 @@ class PublicationContr extends PublicationModel {
     private $rapport;
     private $thesard_id;
 
-    // Constructor "overloading"
+    // Constructor "overloading" using argument count
     public function __construct(...$args) {
         if (count($args) === 1) {
             $this->handleOneParameter($args[0]);
         } elseif (count($args) === 2) {
             $this->handleTwoParameter($args[0], $args[1]);
         } elseif (count($args) === 3) {
-            $this->handleTwoParameter($args[0], $args[1], $args[2]);
+            $this->handleThreeParameter($args[0], $args[1], $args[2]);
         } elseif (count($args) === 13) {
             $this->handleThirteenParameter(
                 $args[0],
@@ -74,20 +75,20 @@ class PublicationContr extends PublicationModel {
         $this->id = $id;
     }
 
-    // Used when the user searching for a publication is the professor.
+    // Used when the user searching is a professor
     private function handleTwoParameter($searchQuery, $filter) {
         $this->searchQuery = $searchQuery;
         $this->filter = $filter;
     }
 
-    // Used when the user searching for a publication is the thesard
+    // Used when the user searching is a thesard
     private function handleThreeParameter($searchQuery, $filter, $thesard_id) {
         $this->searchQuery = $searchQuery;
         $this->filter = $filter;
         $this->thesard_id = $thesard_id;
     }
 
-    // Used when modifying a publication
+    // Used when modifying an existing publication
     private function handleThirteenParameter(
         $id,
         $reference,
@@ -118,7 +119,7 @@ class PublicationContr extends PublicationModel {
         $this->rapport = $rapport;
     }
 
-    // For adding a publication
+    // Used when adding a new publication
     private function handleFourteenParameter(
         $reference,
         $titre,
@@ -151,10 +152,12 @@ class PublicationContr extends PublicationModel {
         $this->thesard_id = $thesard_id;
     }
 
+    // Delete a publication
     public function delete() {
         $this->deletePublication($this->id);
     }
 
+    // Search for publications
     public function search() {
         $results = "";
         if (empty($this->thesard_id)) {
@@ -168,19 +171,21 @@ class PublicationContr extends PublicationModel {
         exit();
     }
 
-
+    // Add a new publication
     public function add() {
+        // Validate input
         if ($this->isEmptyInputWhenAdding()) {
             header("location: publications.php?error=emptyInput");
             exit();
         }
 
+        // Ensure files are PDF
         if ($this->isNotPDF()) {
             header("location: publications.php?error=notPDF");
             exit();
         }
 
-        // Create directories where to store PDFs
+        // Ensure required directories exist
         $directories = [
             "uploads/publications",
             "uploads/attestations",
@@ -194,6 +199,7 @@ class PublicationContr extends PublicationModel {
             }
         }
 
+        // Save publication to DB
         $this->setPublication(
             $this->reference,
             $this->titre,
@@ -211,6 +217,7 @@ class PublicationContr extends PublicationModel {
             $this->thesard_id
         );
 
+        // Move uploaded PDF files to appropriate directories
         move_uploaded_file(
             $this->publication["tmp_name"],
             __DIR__ . "/../../../uploads/publications/" . $this->publication["name"]
@@ -225,10 +232,12 @@ class PublicationContr extends PublicationModel {
         );
     }
 
+    // Get publication title by ID
     public function getPublicationTitle($publication_id) {
         return $this->getPublicationTitleById($publication_id);
     }
 
+    // Check if required fields are empty during add
     private function isEmptyInputWhenAdding() {
         return (
             empty($this->reference) ||
@@ -245,6 +254,7 @@ class PublicationContr extends PublicationModel {
         );
     }
 
+    // Check if required fields are empty during modification
     private function isEmptyInputWhenModify() {
         return (
             empty($this->reference) ||
@@ -257,12 +267,14 @@ class PublicationContr extends PublicationModel {
         );
     }
 
+    // Modify an existing publication
     public function modify() {
         if ($this->isEmptyInputWhenModify()) {
             header("location: publications.php?error=emptyInput");
             exit();
         }
 
+        // Update record in DB
         $this->updatePublication(
             $this->id,
             $this->reference,
@@ -279,6 +291,7 @@ class PublicationContr extends PublicationModel {
             $this->rapport
         );
 
+        // Replace uploaded files if new ones were provided
         if (!empty($this->publication)) {
             move_uploaded_file(
                 $this->publication["tmp_name"],
@@ -301,6 +314,7 @@ class PublicationContr extends PublicationModel {
         }
     }
 
+    // Check if any uploaded file is not a PDF
     private function isNotPDF() {
         return (
             $this->publication["type"] !== "application/pdf" ||

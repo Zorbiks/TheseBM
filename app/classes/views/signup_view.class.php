@@ -1,6 +1,7 @@
 <?php
 
 class SignupView {
+    // Display a popup with an error or success message based on the GET parameter "error"
     public function renderErrorPopup() {
         if (isset($_GET["error"])):
             $message = "";
@@ -26,12 +27,12 @@ class SignupView {
                     break;
             }
 
+            // Set popup color depending on error or success
             if ($_GET["error"] === "none") {
                 $popupType = "success";
             } else {
                 $popupType = "danger";
             }
-
 ?>
             <div class="toast show position-absolute mt-5 top-0 start-50 translate-middle-x align-items-center text-bg-<?= $popupType ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="d-flex">

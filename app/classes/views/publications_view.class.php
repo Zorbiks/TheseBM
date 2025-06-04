@@ -1,11 +1,13 @@
 <?php
 
 class PublicationsView extends PublicationModel {
+    // Show a popup message based on error or success passed via GET parameters
     public function renderErrorPopup() {
         if (isset($_GET["error"])) {
             $message = "";
             $popupType = "";
 
+            // If no error, set success messages based on action type
             if ($_GET["error"] === "none") {
                 $popupType = "success";
                 switch ($_GET["action"]) {
@@ -20,6 +22,7 @@ class PublicationsView extends PublicationModel {
                         break;
                 }
             } else {
+                // If there is an error, display appropriate error message
                 $popupType = "danger";
                 switch ($_GET["error"]) {
                     case "notPDF":
@@ -43,11 +46,11 @@ class PublicationsView extends PublicationModel {
         }
     }
 
-
+    // Render the publications table
     public function renderPublicationsTable() {
         $publications = null;
 
-
+        // Load publications based on user role and optional search results from GET param
         if ($_SESSION["role"] === "thesard") {
             if (isset($_GET["results"])) {
                 $publications = unserialize(urldecode($_GET['results']));
@@ -62,6 +65,7 @@ class PublicationsView extends PublicationModel {
             }
         }
 
+        // If no publications, show message and add button for thesards
         if (!$publications || count($publications) === 0): ?>
             <p>Il n'y a aucune publication pour le moment.</p>
             <div class="d-flex gap-5 justify-content-end">
@@ -71,6 +75,21 @@ class PublicationsView extends PublicationModel {
                         <i class="fa-solid fa-plus fa-fw"></i>
                         Ajouter publication
                     </button>
+                    <form>
+                        <div class="d-flex gap-2">
+                            <select class="form-select" name="filter">
+                                <option value="titre" selected>Titre</option>
+                                <option value="thesard">Thésard</option>
+                                <option value="auteurs">Auteurs</option>
+                                <option value="doi">DOI</option>
+                                <option value="reference">Référence</option>
+                            </select>
+                            <input type="text" class="form-control" name="search" placeholder="Rechercher">
+                            <button type="submit" class="btn btn-primary" name="action" value="search">
+                                <i class="fa-solid fa-magnifying-glass fa-fw"></i>
+                            </button>
+                        </div>
+                    </form>
                 <?php endif; ?>
             </div>
         <?php else: ?>

@@ -7,7 +7,7 @@ class ThesardsMgrContr extends ThesardsMgrModel {
     private $email;
     private $password;
 
-    // Constructor "overloading"
+    // Constructor "overloading" using variable number of arguments
     public function __construct(...$args) {
         if (count($args) === 1) {
             $this->handleOneParameter($args[0]);
@@ -16,10 +16,12 @@ class ThesardsMgrContr extends ThesardsMgrModel {
         }
     }
 
+    // Set ID for deletion
     public function handleOneParameter($id) {
         $this->id = $id;
     }
 
+    // Set user details for account creation
     private function handleFourParameter($firstName, $lastName, $email, $password) {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -27,6 +29,7 @@ class ThesardsMgrContr extends ThesardsMgrModel {
         $this->password = $password;
     }
 
+    // Add new account after validation checks
     public function add() {
         if ($this->isEmptyInput()) {
             header("location: gestion-des-thesards.php?action=add&error=emptyInput");
@@ -45,14 +48,18 @@ class ThesardsMgrContr extends ThesardsMgrModel {
             exit();
         }
 
+        // Proceed with setting the account if all validations pass
         $this->setAccount($this->firstName, $this->lastName, $this->email, $this->password);
     }
 
+    // Delete an account by ID
     public function delete() {
         $this->deleteAccount($this->id);
     }
 
-    // Error Handling Methodes
+    // ----------- Validation methods -----------
+
+    // Check for any empty input fields
     private function isEmptyInput() {
         return (
             empty($this->firstName) || 
@@ -62,14 +69,17 @@ class ThesardsMgrContr extends ThesardsMgrModel {
         );
     }
 
+    // Validate email format
     private function isEmailInvalid() {
         return !filter_var($this->email, FILTER_VALIDATE_EMAIL);
     }
 
+    // Check if password is shorter than 8 characters
     private function passwordMinLength() {
         return strlen($this->password) < 8;
     }
 
+    // Check if the email already exists in the database
     private function isEmailTaken() {
         return $this->emailExists($this->email);
     }

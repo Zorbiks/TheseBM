@@ -1,9 +1,11 @@
 <?php
 
 class ThesardView extends ThesardsModel {
+    // Render table of all thésards with their publication count and action links
     public function renderThesardsTable() {
         $thesards = $this->getAllThesards();
 
+        // Display a message if there are no thesard
         if (count($thesards) === 0): ?>
             <p>Il n'y a pas de thésards sur la plateforme.</p>
         <?php else: ?>
@@ -20,7 +22,10 @@ class ThesardView extends ThesardsModel {
                         </tr>
                     </thead>
                     <tbody class="align-middle">
-                        <?php foreach($thesards as $thesard): ?>
+                        <?php
+                        // Loop over thesards' info and display the information of each thesard
+                        foreach($thesards as $thesard):
+                        ?>
                             <tr>
                                 <td><?=$thesard["prenom"]?></td>
                                 <td><?=$thesard["nom"]?></td>

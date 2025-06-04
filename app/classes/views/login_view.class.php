@@ -2,8 +2,11 @@
 
 class LoginView {
     public function renderErrorPopup() {
+        // Display error popup based on the 'error' GET parameter
         if (isset($_GET["error"])):
             $message = "";
+
+            // Determine the error message based on the error code
             switch ($_GET["error"]) {
                 case "emptyInput":
                     $message = "Tous les champs de saisie doivent être remplis";

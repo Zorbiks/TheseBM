@@ -16,6 +16,7 @@ class SignupContr extends SignupModel {
         $this->passwordRepeat = $passwordRepeat;
     }
 
+    // Main method to handle signup logic with validation
     public function signupUser() {
         if ($this->isEmptyInput()) {
             header("location: inscription.php?error=emptyInput");
@@ -38,10 +39,13 @@ class SignupContr extends SignupModel {
             exit();
         }
 
+        // Create new user if all checks pass
         $this->setUser($this->firstName, $this->lastName, $this->email, $this->password);
     }
 
-    // Error Handling Methodes
+    // ----------- Validation methods -----------
+
+    // Check if any input field is empty
     private function isEmptyInput() {
         return (
             empty($this->firstName) || 
@@ -52,18 +56,22 @@ class SignupContr extends SignupModel {
         );
     }
 
+    // Validate email format
     private function isEmailInvalid() {
         return !filter_var($this->email, FILTER_VALIDATE_EMAIL);
     }
 
+    // Check if password and confirmation do not match
     private function passwordDontMatch() {
         return ($this->password !== $this->passwordRepeat);
     }
 
+    // Check if password length is not between 8 and 24 characters
     private function passwordLength() {
         return strlen($this->password) < 8 || strlen($this->password) > 24;
     }
 
+    // Check if the email already exists in the database
     private function isEmailTaken() {
         return $this->emailExists($this->email);
     }

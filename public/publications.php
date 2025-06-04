@@ -229,7 +229,6 @@
                                         });
                                     });
 
-                                    // Helper function
                                     // Clear all input fields
                                     function clearInputFields() {
                                         referenceInput.value = '';

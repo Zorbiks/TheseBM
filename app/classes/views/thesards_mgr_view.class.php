@@ -1,8 +1,11 @@
 <?php
 
 class ThesardsMgrView extends ThesardsMgrModel {
+    // Render table listing all active thésards
     public function renderThesardsTable() {
         $thesards = $this->getActiveAccounts();
+
+        // If no active thésards, show message
         if (count($thesards) === 0):
         ?>
             <p>Il n'y a pas de thésards sur la plateforme.</p>
@@ -21,6 +24,7 @@ class ThesardsMgrView extends ThesardsMgrModel {
                     </thead>
                     <tbody class="align-middle">
                         <?php
+                        // Loop through each thésard and output a row
                         foreach($thesards as $thesard):
                         ?>
                             <tr>
@@ -44,11 +48,13 @@ class ThesardsMgrView extends ThesardsMgrModel {
         endif;
     }
 
+    // Show a toast popup for errors or successful actions based on URL parameters
     public function renderErrorPopup() {
         if (isset($_GET["error"]) && isset($_GET["action"])) {
             $message = "";
             $popupType = "";
 
+            // Success case
             if ($_GET["error"] === "none") {
                 $popupType = "success";
                 switch ($_GET["action"]) {
@@ -60,6 +66,7 @@ class ThesardsMgrView extends ThesardsMgrModel {
                         break;
                 }
             } else {
+                // Error cases
                 $popupType = "danger";
                 switch ($_GET["error"]) {
                     case "emailTaken":

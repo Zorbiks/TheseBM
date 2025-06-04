@@ -3,13 +3,14 @@
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
     $action = $_POST["action"];
 
+    // Include required class files
     include_once __DIR__ . "/../classes/models/dbh.class.php";
     include_once __DIR__ . "/../classes/models/publications_model.class.php";
     include_once __DIR__ . "/../classes/controllers/publications_contr.class.php";
-
     include_once __DIR__ . "/../classes/models/dashboard_model.class.php";
     include_once __DIR__ . "/../classes/controllers/journal_contr.class.php";
     
+    // Collect form inputs
     $reference   = $_POST["reference"];
     $titre       = $_POST["titre"];
     $auteurs     = $_POST["auteurs"];
@@ -25,13 +26,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
     $thesard_id  = $_SESSION["id"];
 
 
-    // these input fields are optional, they will be filled with "-" as a placeholder
+    // Default optional fields to "-"
     if (empty($numero)) {
         $numero = "-";
     }
     if (empty($volume)) {
         $volume = "-";
     }
+
+    // Add new publication
     if ($action === "add") {
         $pubMgr = new PublicationContr(
             $reference,
@@ -52,14 +55,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
 
         $pubMgr->add();
 
+        // Log the action in the journal
         $journal = new JournalContr($_SESSION["firstName"] . " " . $_SESSION["lastName"], "a ajouté", $titre);
         $journal->addJournal();
         
+        // Redirect to confirmation
         header("location: publications.php?action=add&error=none");
         exit();
-    } elseif ($action === "edit") {
+    }
+    // Edit existing publication
+    elseif ($action === "edit") {
         $pubMgr = new PublicationContr(
-            $_POST["pubid"],
+            $_POST["pubid"], // ID of the publication to edit
             $reference,
             $titre,
             $auteurs,
@@ -74,41 +81,50 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
             $rapport,
         );
 
+        // Update the publication
         $pubMgr->modify();
 
+        // Log the action
         $journal = new JournalContr($_SESSION["firstName"] . " " . $_SESSION["lastName"], "a modifié", $titre);
         $journal->addJournal();
         
+        // Redirect to confirmation
         header("location: publications.php?action=edit&error=none");
         exit();
     }
-} elseif ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["action"])) {
+}
+ // Handle GET requests: delete or search publications
+elseif ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["action"])) {
+    // Include class dependencies
     include_once __DIR__ . "/../classes/models/dbh.class.php";
     include_once __DIR__ . "/../classes/models/publications_model.class.php";
     include_once __DIR__ . "/../classes/controllers/publications_contr.class.php";
-
     include_once __DIR__ . "/../classes/models/dashboard_model.class.php";
     include_once __DIR__ . "/../classes/controllers/journal_contr.class.php";
 
     $action = $_GET["action"];
 
+    // Delete a publication
     if ($action === "delete" && empty($_GET["error"])) {
         $pubMgr = new PublicationContr($_GET["id"]);
 
-        
+        // Delete the publication
+        $pubMgr->delete();
+        // Log the deletion
         $journal = new JournalContr(
             $_SESSION["firstName"] . " " . $_SESSION["lastName"],
             "a supprimé",
             $pubMgr->getPublicationTitle($_GET["id"])
         );
-
         $journal->addJournal();
 
-        $pubMgr->delete();
-        
+        // Redirect to confirmation
         header("location: publications.php?action=delete&error=none");
         exit();
-    } elseif ($action === "search") {
+    }
+    // Search publications
+    elseif ($action === "search") {
+        // Role-based search logic
         if ($_SESSION["role"] === "professeur") {
             $pubMgr = new PublicationContr($_GET["search"], $_GET["filter"]);
             $pubMgr->search();

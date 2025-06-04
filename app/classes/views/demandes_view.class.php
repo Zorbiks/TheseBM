@@ -1,8 +1,11 @@
 <?php
 
 class DemandesView extends DemandesModel {
+    // Render the table of inactive thesard accounts (pending requests)
     public function renderDemandesTable() {
         $thesards = $this->getInactiveAccounts();
+
+        // If no pending requests, display a message
         if (count($thesards) === 0):
         ?>
             <p>Il n'y a pas de demandes d'inscriptions en ce moment.</p>
@@ -21,6 +24,7 @@ class DemandesView extends DemandesModel {
                     </thead>
                     <tbody class="align-middle">
             <?php
+            // Loop through each thesard and display info with accept/reject buttons
             foreach($thesards as $thesard):
             ?>
                 <tr>
@@ -49,6 +53,7 @@ class DemandesView extends DemandesModel {
         endif;
     }
 
+    // Show a success popup based on URL parameters after accept or reject actions
     public function renderErrorPopup() {
         if (isset($_GET["error"]) && isset($_GET["action"])):
             $message = "";

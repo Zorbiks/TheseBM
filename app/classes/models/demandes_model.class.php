@@ -1,6 +1,7 @@
 <?php
 
 class DemandesModel extends Dbh {
+    // Fetch all inactive accounts with role 'thesard'
     protected function getInactiveAccounts() {
         try {
             $sql = "SELECT id, prenom, nom, email FROM users WHERE active = 0 AND role = 'thesard';";
@@ -14,6 +15,7 @@ class DemandesModel extends Dbh {
         }
     }
     
+    // Retrieve information about a specific thesard by ID
     protected function getThesardInfo($id) {
         try {
             $sql = "SELECT prenom, nom, email FROM users WHERE id = :id;";
@@ -33,6 +35,7 @@ class DemandesModel extends Dbh {
         }
     }
     
+    // Activate a user account by setting active = 1
     protected function activateAccount($id) {
         try {
             $sql = "UPDATE users SET active = 1 WHERE users.id = :id;";
@@ -45,6 +48,7 @@ class DemandesModel extends Dbh {
         }
     }
     
+    // Delete a user account by ID
     protected function deleteAccount($id) {
         try {
             $sql = "DELETE FROM users WHERE users.id = :id;";

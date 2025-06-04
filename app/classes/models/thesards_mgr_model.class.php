@@ -1,6 +1,7 @@
 <?php
 
 class ThesardsMgrModel extends Dbh {
+    // Retrieve all active 'thesard' accounts with selected fields
     protected function getActiveAccounts() {
         try {
             $sql = "SELECT id, prenom, nom, email FROM users WHERE active = 1 AND role = 'thesard';";
@@ -13,6 +14,41 @@ class ThesardsMgrModel extends Dbh {
         }
     }
 
+    // Insert a new active thesard account with hashed password
+    protected function setAccount($firstName, $lastName, $email, $password) {
+        try {
+            $sql = "INSERT INTO users (id, prenom, nom, email, password, role, active) 
+                    VALUES (NULL, :firstName, :lastName, :email, :password, 'thesard', 1);";
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    
+            $dbh = $this->connect();
+            $stmt = $dbh->prepare($sql);
+    
+            $stmt->bindParam(':firstName', $firstName);
+            $stmt->bindParam(':lastName', $lastName);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $hashedPassword);
+    
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo $e;
+        }
+    }
+    
+    // Delete a user account by its ID
+    protected function deleteAccount($id) {
+        try {
+            $sql = "DELETE FROM users WHERE users.id = :id";
+            $dbh = $this->connect();
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    // Check if a given email already exists in the users table
     protected function emailExists($email) {
         try {
             $sql = "SELECT email FROM users WHERE email = :email;";
@@ -26,37 +62,4 @@ class ThesardsMgrModel extends Dbh {
             echo $e->getMessage();
         }
     }
-
-    protected function setAccount($firstName, $lastName, $email, $password) {
-        try {
-            $sql = "INSERT INTO users (id, prenom, nom, email, password, role, active) 
-                    VALUES (NULL, :firstName, :lastName, :email, :password, 'thesard', 1);";
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    
-            $dbh = $this->connect();
-            $stmt = $dbh->prepare($sql);
-    
-            // Bind parameters using named placeholders
-            $stmt->bindParam(':firstName', $firstName);
-            $stmt->bindParam(':lastName', $lastName);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':password', $hashedPassword);
-    
-            $stmt->execute();
-        } catch (PDOException $e) {
-            echo $e;
-        }
-    }
-    
-    protected function deleteAccount($id) {
-        try {
-            $sql = "DELETE FROM users WHERE users.id = :id";
-            $dbh = $this->connect();
-            $stmt = $dbh->prepare($sql);
-            $stmt->bindParam(':id', $id);
-            $stmt->execute();
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-    }    
 }

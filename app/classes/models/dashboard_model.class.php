@@ -16,7 +16,7 @@ class DashboardModel extends Dbh {
         try {
             $dbh = $this->connect();
 
-            // Publication types to count
+            // Define publication types to count
             $types = ["conference", "chapitre", "communication"];
             $stats = [];
 
@@ -28,7 +28,7 @@ class DashboardModel extends Dbh {
                 $stats[$type] = $result["total"];
             }
 
-            // Total count of all publications
+            // Total number of publications regardless of type
             $stmtTotal = $dbh->query("SELECT COUNT(*) AS total FROM publications");
             $totalResult = $stmtTotal->fetch();
             $stats["total"] = $totalResult["total"];
@@ -39,6 +39,7 @@ class DashboardModel extends Dbh {
         }
     }
 
+    // Returns the count of thesards grouped by their active status.
     protected function getNumberOfThesards() {
         try {
             $sql = "SELECT active, COUNT(*) AS total FROM users WHERE role = 'thesard' GROUP BY active;";
@@ -46,12 +47,13 @@ class DashboardModel extends Dbh {
             $stmt = $dbh->query($sql);
             $results = $stmt->fetchAll();
 
-            // Prepare counts with default 0
+            // Initialize counts with default 0 values
             $counts = [
                 'active'   => 0,
                 'inactive' => 0,
             ];
 
+            // Iterate through result rows and assign counts based on active status
             foreach ($results as $row) {
                 // Using strict comparison for clarity
                 if ($row['active'] == 1) {
@@ -68,6 +70,7 @@ class DashboardModel extends Dbh {
         }
     }
 
+    // Inserts a new journal entry to track actions performed on publications
     protected function setJournal($thesard, $action, $publication) {
         try {
             $sql = "INSERT INTO journal (thesard, action, publication, date) 
@@ -75,18 +78,17 @@ class DashboardModel extends Dbh {
             $dbh = $this->connect();
             $stmt = $dbh->prepare($sql);
 
-            // Bind parameters using labels
             $stmt->bindParam(':thesard', $thesard);
             $stmt->bindParam(':action', $action);
             $stmt->bindParam(':publication', $publication);
 
-            // Execute the statement; exceptions will be thrown if execution fails.
             $stmt->execute();
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
     }
 
+    // Retrieves all entries from the journal table
     protected function getJournal() {
         try {
             $sql = "SELECT * FROM journal;";

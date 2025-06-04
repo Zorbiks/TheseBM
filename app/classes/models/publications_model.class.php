@@ -1,6 +1,7 @@
 <?php
 
 class PublicationModel extends Dbh {
+    // Insert a new publication record into the database
     protected function setPublication(
         $reference,
         $titre,
@@ -32,7 +33,6 @@ class PublicationModel extends Dbh {
             $publicationPath = "uploads/publications/" . $publication;
             $rapportPath     = "uploads/rapports/" . $rapport;
     
-            // Bind parameters with named placeholders using bindParam.
             $stmt->bindParam(':reference', $reference);
             $stmt->bindParam(':titre', $titre);
             $stmt->bindParam(':auteurs', $auteurs);
@@ -54,7 +54,7 @@ class PublicationModel extends Dbh {
         }
     }
     
-
+    // Update an existing publication record, optionally updating file paths if new files are provided
     protected function updatePublication(
         $id,
         $reference,
@@ -75,7 +75,8 @@ class PublicationModel extends Dbh {
         $attestationPath = !empty($attestation) ? "uploads/attestations/" . $attestation["name"] : "";
         $rapportPath     = !empty($rapport)     ? "uploads/rapports/" . $rapport["name"] : "";
     
-        // Build SQL string. Since we are always binding these values, include them in the SET clause.
+        // Build the SQL UPDATE query dynamically based on which file paths are present
+
         $sql = "
             UPDATE publications 
             SET 
@@ -98,7 +99,6 @@ class PublicationModel extends Dbh {
             $dbh = $this->connect();
             $stmt = $dbh->prepare($sql);
     
-            // Bind parameters using named placeholders.
             $stmt->bindParam(':id', $id);
             $stmt->bindParam(':reference', $reference);
             $stmt->bindParam(':titre', $titre);
@@ -119,7 +119,7 @@ class PublicationModel extends Dbh {
         }
     }
     
-
+    // Retrieve all publications associated with a specific thesard (user) by their ID
     protected function getPublicationsByThesardId($thesard_id) {
         try {
             $sql = "SELECT * FROM publications WHERE thesard_id = :thesard_id;";
@@ -141,7 +141,7 @@ class PublicationModel extends Dbh {
         }
     }
     
-
+    // Get the title ('titre') of a publication by its ID
     protected function getPublicationTitleById($publication_id) {
         try {
             $sql = "SELECT titre FROM publications WHERE id = :publication_id;";
@@ -161,7 +161,7 @@ class PublicationModel extends Dbh {
         }
     }
     
-
+    // Get all publications in the database
     protected function getAllPublications() {
         try {
             $sql = "SELECT * FROM publications;";
@@ -173,7 +173,7 @@ class PublicationModel extends Dbh {
         }
     }
 
-
+    // Get publications filtered by a search query and a filter type
     protected function getPublicationsByFilter($searchQuery, $filter) {
         switch ($filter) {
             case "titre":
@@ -209,7 +209,7 @@ class PublicationModel extends Dbh {
         }
     }
     
-
+    // Get publications filtered by search query, filter type, and a specific thesard ID
     protected function getPublicationsByFilterAndThesardId($searchQuery, $filter, $thesard_id) {
         switch ($filter) {
             case "titre":
@@ -249,7 +249,7 @@ class PublicationModel extends Dbh {
         }
     }
     
-
+    // Delete a publication from the database by its ID
     protected function deletePublication($id) {
         try {
             $sql = "DELETE FROM publications WHERE id = :id;";

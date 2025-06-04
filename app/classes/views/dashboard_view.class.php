@@ -1,6 +1,7 @@
 <?php
 
 class DashboardView extends DashboardModel {
+    // Display publication statistics
     public function renderPublicationStats() {
         $publicationsCounts = $this->getPublicationStats();
 
@@ -24,6 +25,7 @@ class DashboardView extends DashboardModel {
 <?php
     }
 
+    // Display stats about active and inactive thesards
     public function renderThesardStats() {
         $thesardCounts = $this->getNumberOfThesards();
 ?>
@@ -46,8 +48,10 @@ class DashboardView extends DashboardModel {
 <?php
     }
 
+    // Display journal or a message if there are none
     public function renderJournal() {
         $journal = $this->getJournal();
+        // Check if there are no entries in the journal
         if (count($journal) === 0):
             ?>
             <p>Il n'y a pas d'événements pour le moment.</p>

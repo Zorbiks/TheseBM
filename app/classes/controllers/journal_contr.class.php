@@ -11,7 +11,9 @@ class JournalContr extends DashboardModel {
         $this->publicationTitle = $publicationTitle;
     }
 
+    // Add a journal entry
     function addJournal() {
+        // Insert the journal entry into the database
         $this->setJournal($this->thesardName, $this->action, $this->publicationTitle);
     }
 }

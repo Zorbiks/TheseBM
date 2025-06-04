@@ -1,4 +1,5 @@
 <?php
+    // Define the home URL based on the user's role
     if ($_SESSION["role"] === "professeur") {
         $appHomeUrl = "dashboard.php";
     } elseif ($_SESSION["role"] === "thesard") {
