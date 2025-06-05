@@ -1,3 +1,8 @@
+/* Overriding Bootstrap defaults */
+.container {
+    max-width: 960px;
+}
+
 .hero-wrapper {
     background-color: rgba(0, 0, 0, .75);
     background-image: url('../assets/images/background.jpg');
