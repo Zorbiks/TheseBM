@@ -36,3 +36,37 @@ article a:hover {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+/* Accordion */
+.accordion {
+	max-width: 600px;
+}
+
+.accordion-item h2 button {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.accordion-item h2 button:hover {
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
+} 
+
+.accordion-button::after {
+	background-image: url('../assets/images/icon-plus.svg');
+	background-size: auto;
+	width: 2rem;
+	height: 2rem;
+	transform: none;
+	transition: none;
+}
+
+.accordion-button:not(.collapsed) {
+	background-color: transparent;
+}
+
+.accordion-button:not(.collapsed)::after {
+	background-image: url('../assets/images/icon-minus.svg');
+	transform: none;
+	transition: none;
+}
