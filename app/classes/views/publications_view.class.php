@@ -75,22 +75,22 @@ class PublicationsView extends PublicationModel {
                         <i class="fa-solid fa-plus fa-fw"></i>
                         Ajouter publication
                     </button>
-                    <form>
-                        <div class="d-flex gap-2">
-                            <select class="form-select" name="filter">
-                                <option value="titre" selected>Titre</option>
-                                <option value="thesard">Thésard</option>
-                                <option value="auteurs">Auteurs</option>
-                                <option value="doi">DOI</option>
-                                <option value="reference">Référence</option>
-                            </select>
-                            <input type="text" class="form-control" name="search" placeholder="Rechercher">
-                            <button type="submit" class="btn btn-primary" name="action" value="search">
-                                <i class="fa-solid fa-magnifying-glass fa-fw"></i>
-                            </button>
-                        </div>
-                    </form>
                 <?php endif; ?>
+                <form>
+                    <div class="d-flex gap-2">
+                        <select class="form-select" name="filter">
+                            <option value="titre" selected>Titre</option>
+                            <option value="thesard">Thésard</option>
+                            <option value="auteurs">Auteurs</option>
+                            <option value="doi">DOI</option>
+                            <option value="reference">Référence</option>
+                        </select>
+                        <input type="text" class="form-control" name="search" placeholder="Rechercher">
+                        <button type="submit" class="btn btn-primary" name="action" value="search">
+                            <i class="fa-solid fa-magnifying-glass fa-fw"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
         <?php else: ?>
             <div class="d-flex gap-5 justify-content-end">
