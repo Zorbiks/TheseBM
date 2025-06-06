@@ -1,28 +1,47 @@
 # TheseBM
 
-To get started with the development, install [XAMPP](https://www.apachefriends.org/download.html) and copy the repository to the root folder
+## Table of Contents
 
-**Windows**
+- [Getting Started](#getting-started)
+- [Importing Database in PHPMyAdmin](#importing-database-in-phpmyadmin)
 
-```
+---
+
+## Getting Started
+
+To begin development, install [XAMPP](https://www.apachefriends.org/download.html) and copy the repository to the root folder.
+
+### Windows
+
+```bash
 git clone git@github.com:Zorbiks/TheseBM.git C:/xampp/htdocs/TheseBM
 ```
 
-**GNU/Linux**
+### GNU/Linux
 
-```
+```bash
 git clone git@github.com:Zorbiks/TheseBM.git
 ```
 
-**Note**: For GNU/Linux make sure that you change the ```DocumentRoot``` option located in ```/opt/lampp/etc/httpd.conf``` to another directory otherwise root permission is required
+**Note:** On GNU/Linux, ensure you change the `DocumentRoot` option in the file located at `/opt/lampp/etc/httpd.conf` to a different directory. This avoids the need for root permissions.
 
-**Example**
-```
-# 
-# DocumentRoot: The directory out of which you will serve your
-# documents. By default, all requests are taken from this directory, but
-# symbolic links and aliases may be used to point to other locations.
-#
+**Example:**
+
+```apache
 DocumentRoot "/home/user/www"
 <Directory "/home/user/www">
 ```
+
+---
+
+## Importing Database in PHPMyAdmin
+
+1. Open ```http://localhost/phpmyadmin/``` in your browser.
+2. Navigate to the **Import** tab.
+3. In the **File to import:** section, click **Choose File** and select the ```thesebm.sql``` file.
+
+![](screenshot-import-database-1.jpg)
+
+4. Scroll down to the bottom of the page and click the **Import** button.
+
+![](screenshot-import-database-2.jpg)
