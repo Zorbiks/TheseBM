@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 24, 2025 at 11:30 PM
+-- Generation Time: Jun 06, 2025 at 01:43 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `thesebm`
 --
+CREATE DATABASE IF NOT EXISTS `thesebm` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `thesebm`;
 
 -- --------------------------------------------------------
 
