@@ -28,13 +28,17 @@ class ThesardsMgrView extends ThesardsMgrModel {
                         foreach($thesards as $thesard):
                         ?>
                             <tr>
-                                <td><?= $thesard["prenom"] ?></td>
-                                <td><?= $thesard["nom"] ?></td>
-                                <td><?= $thesard["email"] ?></td>
+                                <td class="prenom"><?= $thesard["prenom"] ?></td>
+                                <td class="nom"><?= $thesard["nom"] ?></td>
+                                <td class="email"><?= $thesard["email"] ?></td>
                                 <td>
                                 <button type="button" class="btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#confirmDeletionModal" data-tbm-id="<?= $thesard["id"] ?>">
                                     <i class="fa-solid fa-trash-can fw-fa"></i>
                                     Supprimer
+                                </button>
+                                <button type="button" class="btn btn-primary modify-btn" data-bs-toggle="modal" data-bs-target="#addThesardModal" data-tbm-id="<?= $thesard["id"] ?>">
+                                    <i class="fa-solid fa-pen fw-fa"></i>
+                                    Modifer
                                 </button>
                                 </td>
                             </tr>
@@ -62,7 +66,10 @@ class ThesardsMgrView extends ThesardsMgrModel {
                         $message = "Le compte a été supprimé avec succès";
                         break;
                     case "add":
-                        $message = "La thèse a été ajoutée avec succès";
+                        $message = "La compte a été ajoutée avec succès";
+                        break;
+                    case "modify":
+                        $message = "Le compte a été modifié avec succès";
                         break;
                 }
             } else {

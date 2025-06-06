@@ -13,6 +13,10 @@ class ThesardsMgrContr extends ThesardsMgrModel {
             $this->handleOneParameter($args[0]);
         } elseif(count($args) === 4) {
             $this->handleFourParameter($args[0], $args[1], $args[2], $args[3]);
+        } elseif(count($args) === 5) {
+            $this->handleFiveParameter($args[0], $args[1], $args[2], $args[3], $args[4]);
+        } else {
+            throw new InvalidArgumentException('Invalid number of arguments passed to constructor');
         }
     }
 
@@ -21,8 +25,17 @@ class ThesardsMgrContr extends ThesardsMgrModel {
         $this->id = $id;
     }
 
-    // Set user details for account creation
+    // Set thesard details for account creation
     private function handleFourParameter($firstName, $lastName, $email, $password) {
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+        $this->email = $email;
+        $this->password = $password;
+    }
+
+    // Update thesard details
+    private function handleFiveParameter($id, $firstName, $lastName, $email, $password) {
+        $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
@@ -31,7 +44,7 @@ class ThesardsMgrContr extends ThesardsMgrModel {
 
     // Add new account after validation checks
     public function add() {
-        if ($this->isEmptyInput()) {
+        if ($this->isEmptyInputWhenAdding()) {
             header("location: gestion-des-thesards.php?action=add&error=emptyInput");
             exit();
         }
@@ -50,6 +63,31 @@ class ThesardsMgrContr extends ThesardsMgrModel {
 
         // Proceed with setting the account if all validations pass
         $this->setAccount($this->firstName, $this->lastName, $this->email, $this->password);
+        
+        // Initialize mail service with user info and send confirmation email
+        $mailService = new MailService($this->firstName, $this->lastName, $this->email);
+        $mailService->sendMail();
+    }
+
+    // Update thesard info by ID
+    public function modify() {
+        if ($this->isEmptyInputWhenUpdating()) {
+            header("location: gestion-des-thesards.php?action=modify&error=emptyInput");
+            exit();
+        }
+        if ($this->isEmailInvalid()) {
+            header("location: gestion-des-thesards.php?action=modify&error=emailInvalid");
+            exit();
+        }
+        if (!empty($this->password)) {
+            if ($this->passwordMinLength()) {
+                header("location: gestion-des-thesards.php?action=modify&error=passwordLength");
+                exit();
+            }
+        }
+
+        // Proceed with modifying the account if all validations pass
+        $this->updateAccount($this->id, $this->firstName, $this->lastName, $this->email, $this->password);
     }
 
     // Delete an account by ID
@@ -57,15 +95,21 @@ class ThesardsMgrContr extends ThesardsMgrModel {
         $this->deleteAccount($this->id);
     }
 
-    // ----------- Validation methods -----------
-
     // Check for any empty input fields
-    private function isEmptyInput() {
+    private function isEmptyInputWhenAdding() {
         return (
             empty($this->firstName) || 
             empty($this->lastName) || 
             empty($this->email) || 
             empty($this->password)
+        );
+    }
+
+    private function isEmptyInputWhenUpdating() {
+        return (
+            empty($this->firstName) || 
+            empty($this->lastName) || 
+            empty($this->email)
         );
     }
 

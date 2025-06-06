@@ -19,6 +19,7 @@ class ThesardsMgrModel extends Dbh {
         try {
             $sql = "INSERT INTO users (id, prenom, nom, email, password, role, active) 
                     VALUES (NULL, :firstName, :lastName, :email, :password, 'thesard', 1);";
+            
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     
             $dbh = $this->connect();
@@ -31,7 +32,37 @@ class ThesardsMgrModel extends Dbh {
     
             $stmt->execute();
         } catch (PDOException $e) {
-            echo $e;
+            echo $e->getMessage();
+        }
+    }
+
+    // Update thesard account with hashed password
+    protected function updateAccount($id, $firstname, $lastname, $email, $password) {
+        try {
+            $sql = "UPDATE users
+                    SET
+                        prenom = :firstname,
+                        nom = :lastname,
+                        email = :email"
+                        . (!empty($password) ? ", password = :password" : "")
+                        . " WHERE id = :id;";
+            
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            $dbh = $this->connect();
+            $stmt = $dbh->prepare($sql);
+
+            $stmt->bindParam(":firstname", $firstname);
+            $stmt->bindParam(":lastname", $lastname);
+            $stmt->bindParam(":email", $email);
+            if (!empty($password)) {
+                $stmt->bindParam(":password", $hashedPassword);
+            }
+            $stmt->bindParam(":id", $id);            
+
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
         }
     }
     
