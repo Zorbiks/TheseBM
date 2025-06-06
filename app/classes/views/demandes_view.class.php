@@ -28,9 +28,9 @@ class DemandesView extends DemandesModel {
             foreach($thesards as $thesard):
             ?>
                 <tr>
-                    <td><?= $thesard["prenom"] ?></td>
-                    <td><?= $thesard["nom"] ?></td>
-                    <td><?= $thesard["email"] ?></td>
+                    <td><?= htmlspecialchars($thesard["prenom"]) ?></td>
+                    <td><?= htmlspecialchars($thesard["nom"]) ?></td>
+                    <td><?= htmlspecialchars($thesard["email"]) ?></td>
                     <td>
                         <a class="btn btn-success" href="?id=<?= $thesard["id"] ?>&action=accept">
                             <i class="fa-solid fa-check fw-fa"></i>

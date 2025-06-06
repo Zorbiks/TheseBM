@@ -27,12 +27,15 @@ class ThesardView extends ThesardsModel {
                         foreach($thesards as $thesard):
                         ?>
                             <tr>
-                                <td><?=$thesard["prenom"]?></td>
-                                <td><?=$thesard["nom"]?></td>
-                                <td><?=$thesard["email"]?></td>
-                                <td><?=$this->getNumberOfPublicationByThesardId($thesard["id"])?></td>
+                                <td><?= htmlspecialchars($thesard["prenom"]) ?></td>
+                                <td><?= htmlspecialchars($thesard["nom"]) ?></td>
+                                <td><?= htmlspecialchars($thesard["email"]) ?></td>
+                                <td><?= $this->getNumberOfPublicationByThesardId($thesard["id"])?></td>
                                 <td>
-                                    <a class="btn btn-primary" href="publications.php?action=search&search=<?=$thesard["prenom"] . " " . $thesard["nom"] ?>&filter=thesard">
+                                    <a
+                                        class="btn btn-primary"
+                                        href="publications.php?action=search&search=<?= htmlspecialchars($thesard["prenom"]) . " " . htmlspecialchars($thesard["nom"]) ?>&filter=thesard"
+                                    >
                                         <i class="fa-solid fa-eye fa-fw"></i>
                                         Voir les publication
                                     </a>

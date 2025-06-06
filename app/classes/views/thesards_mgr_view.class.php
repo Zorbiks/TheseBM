@@ -28,9 +28,9 @@ class ThesardsMgrView extends ThesardsMgrModel {
                         foreach($thesards as $thesard):
                         ?>
                             <tr>
-                                <td class="prenom"><?= $thesard["prenom"] ?></td>
-                                <td class="nom"><?= $thesard["nom"] ?></td>
-                                <td class="email"><?= $thesard["email"] ?></td>
+                                <td class="prenom"><?= htmlspecialchars($thesard["prenom"]) ?></td>
+                                <td class="nom"><?= htmlspecialchars($thesard["nom"]) ?></td>
+                                <td class="email"><?= htmlspecialchars($thesard["email"]) ?></td>
                                 <td>
                                 <button type="button" class="btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#confirmDeletionModal" data-tbm-id="<?= $thesard["id"] ?>">
                                     <i class="fa-solid fa-trash-can fw-fa"></i>

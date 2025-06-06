@@ -13,7 +13,10 @@
             <img src="assets/images/logo.png" alt="Bootstrap" height="26">
         </a>
         <div class="welcome-message">
-            Bonjour <span class="fw-bold"><?= $_SESSION["firstName"] . " " . $_SESSION["lastName"] ?></span>!
+            Bonjour
+            <span class="fw-bold">
+                <?= htmlspecialchars($_SESSION["firstName"]) . " " . htmlspecialchars($_SESSION["lastName"]) ?>
+            </span>!
         </div>
     </div>
 </header>

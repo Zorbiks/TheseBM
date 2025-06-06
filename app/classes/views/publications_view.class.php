@@ -150,16 +150,16 @@ class PublicationsView extends PublicationModel {
                     <tbody class="align-middle">
                         <?php foreach ($publications as $publication): ?>
                             <tr>
-                                <td class="reference"><?= $publication["reference"] ?></td>
-                                <td class="titre"><?= $publication["titre"] ?></td>
-                                <td class="auteurs"><?= $publication["auteurs"] ?></td>
-                                <td class="numero"><?= $publication["numero"] ?></td>
-                                <td class="volume"><?= $publication["volume"] ?></td>
-                                <td class="date"><?= $publication["date"] ?></td>
-                                <td class="lieu"><?= $publication["lieu"] ?></td>
-                                <td class="doi"><?= $publication["doi"] ?></td>
-                                <td class="type"><?= $publication["type"] ?></td>
-                                <td><?= $publication["soumis_par"] ?></td>
+                                <td class="reference"><?= htmlspecialchars($publication["reference"]) ?></td>
+                                <td class="titre"><?= htmlspecialchars($publication["titre"]) ?></td>
+                                <td class="auteurs"><?= htmlspecialchars($publication["auteurs"]) ?></td>
+                                <td class="numero"><?= htmlspecialchars($publication["numero"]) ?></td>
+                                <td class="volume"><?= htmlspecialchars($publication["volume"]) ?></td>
+                                <td class="date"><?= htmlspecialchars($publication["date"]) ?></td>
+                                <td class="lieu"><?= htmlspecialchars($publication["lieu"]) ?></td>
+                                <td class="doi"><?= htmlspecialchars($publication["doi"]) ?></td>
+                                <td class="type"><?= htmlspecialchars($publication["type"]) ?></td>
+                                <td><?= htmlspecialchars($publication["soumis_par"]) ?></td>
                                 <td>
                                     <a class="btn btn-success attestation" href="../<?= $publication["attestation"] ?>" download>
                                         <i class="fa-solid fa-download fa-fw"></i>
