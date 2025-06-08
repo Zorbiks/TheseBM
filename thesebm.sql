@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 06, 2025 at 01:43 PM
+-- Generation Time: Jun 08, 2025 at 04:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,13 +45,12 @@ CREATE TABLE `journal` (
 
 CREATE TABLE `publications` (
   `id` int(11) NOT NULL,
-  `reference` varchar(255) NOT NULL,
   `titre` varchar(255) NOT NULL,
   `auteurs` varchar(255) NOT NULL,
   `soumis_par` varchar(255) NOT NULL,
   `lieu` varchar(255) NOT NULL,
+  `date` year(4) NOT NULL,
   `doi` varchar(255) NOT NULL,
-  `date` date NOT NULL,
   `type` varchar(255) NOT NULL,
   `numero` varchar(255) NOT NULL,
   `volume` varchar(255) NOT NULL,
