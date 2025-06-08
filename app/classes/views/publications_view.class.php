@@ -83,7 +83,7 @@ class PublicationsView extends PublicationModel {
                             <option value="thesard">Thésard</option>
                             <option value="auteurs">Auteurs</option>
                             <option value="doi">DOI</option>
-                            <option value="reference">Référence</option>
+                            <option value="date">Date</option>
                         </select>
                         <input type="text" class="form-control" name="search" placeholder="Rechercher">
                         <button type="submit" class="btn btn-primary" name="action" value="search">
@@ -116,7 +116,7 @@ class PublicationsView extends PublicationModel {
                             <option value="thesard">Thésard</option>
                             <option value="auteurs">Auteurs</option>
                             <option value="doi">DOI</option>
-                            <option value="reference">Référence</option>
+                            <option value="date">Date</option>
                         </select>
                         <input type="text" class="form-control" name="search" placeholder="Rechercher">
                         <button type="submit" class="btn btn-primary" name="action" value="search">
@@ -129,7 +129,6 @@ class PublicationsView extends PublicationModel {
                 <table class="table table-striped text-nowrap">
                     <thead>
                         <tr>
-                            <th class="bg-primary text-light">Référence</th>
                             <th class="bg-primary text-light">Titre</th>
                             <th class="bg-primary text-light">Auteurs</th>
                             <th class="bg-primary text-light">Numéro</th>
@@ -150,7 +149,6 @@ class PublicationsView extends PublicationModel {
                     <tbody class="align-middle">
                         <?php foreach ($publications as $publication): ?>
                             <tr>
-                                <td class="reference"><?= htmlspecialchars($publication["reference"]) ?></td>
                                 <td class="titre"><?= htmlspecialchars($publication["titre"]) ?></td>
                                 <td class="auteurs"><?= htmlspecialchars($publication["auteurs"]) ?></td>
                                 <td class="numero"><?= htmlspecialchars($publication["numero"]) ?></td>

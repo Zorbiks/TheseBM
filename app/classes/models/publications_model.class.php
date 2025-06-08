@@ -3,7 +3,6 @@
 class PublicationModel extends Dbh {
     // Insert a new publication record into the database
     protected function setPublication(
-        $reference,
         $titre,
         $auteurs,
         $soumisPar,
@@ -20,9 +19,9 @@ class PublicationModel extends Dbh {
     ) {
         try {
             $sql = "INSERT INTO `publications` 
-                    (`id`, `reference`, `titre`, `auteurs`, `soumis_par`, `lieu`, `doi`, `date`, `type`, `numero`, `volume`, `attestation`, `publication`, `rapport`, `thesard_id`) 
+                    (`id`, `titre`, `auteurs`, `soumis_par`, `lieu`, `doi`, `date`, `type`, `numero`, `volume`, `attestation`, `publication`, `rapport`, `thesard_id`) 
                     VALUES (NULL, 
-                            :reference, :titre, :auteurs, :soumis_par, :lieu, :doi, :date, 
+                            :titre, :auteurs, :soumis_par, :lieu, :doi, :date, 
                             :type, :numero, :volume, :attestation, :publication, :rapport, :thesard_id)";
     
             $dbh = $this->connect();
@@ -33,7 +32,6 @@ class PublicationModel extends Dbh {
             $publicationPath = "uploads/publications/" . $publication;
             $rapportPath     = "uploads/rapports/" . $rapport;
     
-            $stmt->bindParam(':reference', $reference);
             $stmt->bindParam(':titre', $titre);
             $stmt->bindParam(':auteurs', $auteurs);
             $stmt->bindParam(':soumis_par', $soumisPar);
@@ -57,7 +55,6 @@ class PublicationModel extends Dbh {
     // Update an existing publication record, optionally updating file paths if new files are provided
     protected function updatePublication(
         $id,
-        $reference,
         $titre,
         $auteurs,
         $lieu,
@@ -80,7 +77,6 @@ class PublicationModel extends Dbh {
         $sql = "
             UPDATE publications 
             SET 
-                reference = :reference,
                 titre = :titre,
                 auteurs = :auteurs,
                 lieu = :lieu,
@@ -100,7 +96,6 @@ class PublicationModel extends Dbh {
             $stmt = $dbh->prepare($sql);
     
             $stmt->bindParam(':id', $id);
-            $stmt->bindParam(':reference', $reference);
             $stmt->bindParam(':titre', $titre);
             $stmt->bindParam(':auteurs', $auteurs);
             $stmt->bindParam(':lieu', $lieu);
@@ -188,8 +183,8 @@ class PublicationModel extends Dbh {
             case "doi":
                 $sql = "SELECT * FROM publications WHERE doi LIKE :searchTerm;";
                 break;
-            case "reference":
-                $sql = "SELECT * FROM publications WHERE reference LIKE :searchTerm;";
+            case "date":
+                $sql = "SELECT * FROM publications WHERE date LIKE :searchTerm;";
                 break;
             default:
                 // Set a default query or throw an exception if needed.
@@ -224,8 +219,8 @@ class PublicationModel extends Dbh {
             case "doi":
                 $sql = "SELECT * FROM publications WHERE doi LIKE :searchTerm AND thesard_id = :thesard_id;";
                 break;
-            case "reference":
-                $sql = "SELECT * FROM publications WHERE reference LIKE :searchTerm AND thesard_id = :thesard_id;";
+            case "date":
+                $sql = "SELECT * FROM publications WHERE date LIKE :searchTerm AND thesard_id = :thesard_id;";
                 break;
             default:
                 throw new Exception("Invalid filter provided.");

@@ -50,10 +50,6 @@
                                         <form action="" method="POST" enctype="multipart/form-data">
                                             <div class="modal-body">
                                                 <div class="mb-3">
-                                                    <label for="reference" class="form-label">Référence *</label>
-                                                    <input type="text" class="form-control" id="reference" name="reference">
-                                                </div>
-                                                <div class="mb-3">
                                                     <label for="titre" class="form-label">Titre *</label>
                                                     <input type="text" class="form-control" id="titre" name="titre">
                                                 </div>
@@ -71,7 +67,7 @@
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <label for="date" class="form-label">Date *</label>
-                                                    <input type="date" class="form-control" id="date" name="date">
+                                                    <input type="number" min="1970" class="form-control" id="date" name="date">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="type" class="form-label">Type *</label>
@@ -126,7 +122,6 @@
                                 </div>
                                 <script>
                                     // Select each input field using getElementById
-                                    const referenceInput = document.getElementById('reference');
                                     const titreInput = document.getElementById('titre');
                                     const auteursInput = document.getElementById('auteurs');
                                     const lieuInput = document.getElementById('lieu');
@@ -140,6 +135,10 @@
                                     const rapportInput = document.getElementById('rapport');
                                     const pubidInput = document.getElementById('pubid');
                                     const submitBtn = document.querySelector('.submit');
+
+                                    // Set max date to the current year
+                                    const currentYear = new Date().getFullYear();
+                                    dateInput.setAttribute('max', currentYear);
 
                                     // Activate volume only on journal type publication
                                     const volumeWrapper = document.getElementById('volume-wrapper');
@@ -217,7 +216,6 @@
                                             // And fill the form with the data
                                             const row = btn.closest("tr");
 
-                                            referenceInput.value = row.querySelector('td.reference').textContent;
                                             titreInput.value = row.querySelector('td.titre').textContent;
                                             auteursInput.value = row.querySelector('td.auteurs').textContent;
                                             lieuInput.value = row.querySelector('td.lieu').textContent;
@@ -231,7 +229,6 @@
 
                                     // Clear all input fields
                                     function clearInputFields() {
-                                        referenceInput.value = '';
                                         titreInput.value = '';
                                         auteursInput.value = '';
                                         lieuInput.value = '';

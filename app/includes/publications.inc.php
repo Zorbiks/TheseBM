@@ -11,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
     include_once __DIR__ . "/../classes/controllers/journal_contr.class.php";
     
     // Collect form inputs
-    $reference   = $_POST["reference"];
     $titre       = $_POST["titre"];
     $auteurs     = $_POST["auteurs"];
     $lieu        = $_POST["lieu"];
@@ -37,7 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
     // Add new publication
     if ($action === "add") {
         $pubMgr = new PublicationContr(
-            $reference,
             $titre,
             $auteurs,
             $_SESSION["firstName"] . " " . $_SESSION["lastName"],
@@ -67,7 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
     elseif ($action === "edit") {
         $pubMgr = new PublicationContr(
             $_POST["pubid"], // ID of the publication to edit
-            $reference,
             $titre,
             $auteurs,
             $lieu,

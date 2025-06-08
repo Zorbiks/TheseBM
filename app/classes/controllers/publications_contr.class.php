@@ -9,7 +9,6 @@ class PublicationContr extends PublicationModel {
     private $filter;
 
     // Attributes related to publication
-    private $reference;
     private $titre;
     private $auteurs;
     private $soumisPar;
@@ -32,8 +31,8 @@ class PublicationContr extends PublicationModel {
             $this->handleTwoParameter($args[0], $args[1]);
         } elseif (count($args) === 3) {
             $this->handleThreeParameter($args[0], $args[1], $args[2]);
-        } elseif (count($args) === 13) {
-            $this->handleThirteenParameter(
+        } elseif (count($args) === 12) {
+            $this->handleTwelveParameter(
                 $args[0],
                 $args[1],
                 $args[2],
@@ -48,8 +47,8 @@ class PublicationContr extends PublicationModel {
                 $args[11],
                 $args[12]
             );
-        } elseif (count($args) === 14) {
-            $this->handleFourteenParameter(
+        } elseif (count($args) === 13) {
+            $this->handleThirteenParameter(
                 $args[0],
                 $args[1],
                 $args[2],
@@ -89,9 +88,8 @@ class PublicationContr extends PublicationModel {
     }
 
     // Used when modifying an existing publication
-    private function handleThirteenParameter(
+    private function handleTwelveParameter(
         $id,
-        $reference,
         $titre,
         $auteurs,
         $lieu,
@@ -105,7 +103,6 @@ class PublicationContr extends PublicationModel {
         $rapport
     ) {
         $this->id = $id;
-        $this->reference = $reference;
         $this->titre = $titre;
         $this->auteurs = $auteurs;
         $this->lieu = $lieu;
@@ -120,8 +117,7 @@ class PublicationContr extends PublicationModel {
     }
 
     // Used when adding a new publication
-    private function handleFourteenParameter(
-        $reference,
+    private function handleThirteenParameter(
         $titre,
         $auteurs,
         $soumisPar,
@@ -136,7 +132,6 @@ class PublicationContr extends PublicationModel {
         $rapport,
         $thesard_id
     ) {
-        $this->reference = $reference;
         $this->titre = $titre;
         $this->auteurs = $auteurs;
         $this->soumisPar = $soumisPar;
@@ -201,7 +196,6 @@ class PublicationContr extends PublicationModel {
 
         // Save publication to DB
         $this->setPublication(
-            $this->reference,
             $this->titre,
             $this->auteurs,
             $this->soumisPar,
@@ -240,7 +234,6 @@ class PublicationContr extends PublicationModel {
     // Check if required fields are empty during add
     private function isEmptyInputWhenAdding() {
         return (
-            empty($this->reference) ||
             empty($this->titre) ||
             empty($this->auteurs) ||
             empty($this->lieu) ||
@@ -257,7 +250,6 @@ class PublicationContr extends PublicationModel {
     // Check if required fields are empty during modification
     private function isEmptyInputWhenModify() {
         return (
-            empty($this->reference) ||
             empty($this->titre) ||
             empty($this->auteurs) ||
             empty($this->lieu) ||
@@ -277,7 +269,6 @@ class PublicationContr extends PublicationModel {
         // Update record in DB
         $this->updatePublication(
             $this->id,
-            $this->reference,
             $this->titre,
             $this->auteurs,
             $this->lieu,
