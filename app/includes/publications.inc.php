@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
             $volume,
             $publication,
             $attestation,
-            $rapport,
+            $rapport
         );
 
         // Update the publication

@@ -103,7 +103,7 @@ class PublicationsView extends PublicationModel {
                 <?php endif; ?>
 
                 <?php if ($_SESSION["role"] === "professeur"): ?>
-                    <button type="button" class="btn btn-primary mb-2">
+                    <button type="button" class="btn btn-primary mb-2" id="export-btn" disabled>
                         <i class="fa-solid fa-file-export fa-fw"></i>
                         Exporter
                     </button>
@@ -129,6 +129,7 @@ class PublicationsView extends PublicationModel {
                 <table class="table table-striped text-nowrap">
                     <thead>
                         <tr>
+                            <th class="bg-primary text-light"></th>
                             <th class="bg-primary text-light">Titre</th>
                             <th class="bg-primary text-light">Auteurs</th>
                             <th class="bg-primary text-light">Numéro</th>
@@ -149,6 +150,13 @@ class PublicationsView extends PublicationModel {
                     <tbody class="align-middle">
                         <?php foreach ($publications as $publication): ?>
                             <tr>
+                                <td class="checkbox">
+                                    <input 
+                                        class="fs-1"
+                                        type="checkbox"
+                                        style="width:18px; height:18px; transform: translateY(2px);"
+                                    >
+                                </td>
                                 <td class="titre"><?= htmlspecialchars($publication["titre"]) ?></td>
                                 <td class="auteurs"><?= htmlspecialchars($publication["auteurs"]) ?></td>
                                 <td class="numero"><?= htmlspecialchars($publication["numero"]) ?></td>
@@ -171,7 +179,7 @@ class PublicationsView extends PublicationModel {
                                     </a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-success publication" href="../<?= $publication["publication"] ?>" download>
+                                    <a class="btn btn-success publication" href="../<?= $publication["publication"] ?>" download="<?= basename($publication["publication"]) ?>">
                                         <i class="fa-solid fa-download fa-fw"></i>
                                         Télécharger
                                     </a>
@@ -196,6 +204,28 @@ class PublicationsView extends PublicationModel {
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+                <script>
+                    const exportButton = document.getElementById('export-btn');
+                    const checkboxes = document.querySelectorAll('td.checkbox input[type="checkbox"]');
+                    checkboxes.forEach(function(checkbox) {
+                        checkbox.addEventListener('change', () => {
+                            const anyChecked = Array.from(checkboxes).some(cb => cb.checked);
+                            exportButton.disabled = !anyChecked;
+                        });
+                    });
+                    exportButton.addEventListener("click", () => {
+                        const checkedCheckboxes = document.querySelectorAll('td.checkbox input[type="checkbox"]:checked');
+                        const links = Array.from(checkedCheckboxes).map(cb => {
+                            const tr = cb.closest('tr');
+                            return tr.querySelector('a.publication');
+                        });
+
+                        console.log(links)
+                        links.forEach((link) => {
+                            link.click();
+                        })
+                    })
+                </script>
             </div>
         <?php endif;
     }

@@ -44,8 +44,7 @@ class PublicationContr extends PublicationModel {
                 $args[8],
                 $args[9],
                 $args[10],
-                $args[11],
-                $args[12]
+                $args[11]
             );
         } elseif (count($args) === 13) {
             $this->handleThirteenParameter(
@@ -61,8 +60,7 @@ class PublicationContr extends PublicationModel {
                 $args[9],
                 $args[10],
                 $args[11],
-                $args[12],
-                $args[13]
+                $args[12]
             );
         } else {
             throw new InvalidArgumentException('Invalid number of arguments passed to constructor');
@@ -283,21 +281,21 @@ class PublicationContr extends PublicationModel {
         );
 
         // Replace uploaded files if new ones were provided
-        if (!empty($this->publication)) {
+        if ($this->publication["error"] !== UPLOAD_ERR_NO_FILE) {
             move_uploaded_file(
                 $this->publication["tmp_name"],
                 __DIR__ . "/../../../uploads/publications/" . $this->publication["name"]
             );
         }
         
-        if (!empty($this->attestation)) {
+        if ($this->attestation["error"] !== UPLOAD_ERR_NO_FILE) {
             move_uploaded_file(
                 $this->attestation["tmp_name"],
                 __DIR__ . "/../../../uploads/attestations/" . $this->attestation["name"]
             );
         }
 
-        if (!empty($this->rapport)) {
+        if ($this->rapport["error"] !== UPLOAD_ERR_NO_FILE) {
             move_uploaded_file(
                 $this->rapport["tmp_name"],
                 __DIR__ . "/../../../uploads/rapports/" . $this->rapport["name"]

@@ -68,9 +68,9 @@ class PublicationModel extends Dbh {
         $rapport
     ) {
         // Prepare file path strings based on input, defaulting to an empty string if the parameter is empty.
-        $publicationPath = !empty($publication) ? "uploads/publications/" . $publication["name"] : "";
-        $attestationPath = !empty($attestation) ? "uploads/attestations/" . $attestation["name"] : "";
-        $rapportPath     = !empty($rapport)     ? "uploads/rapports/" . $rapport["name"] : "";
+        $publicationPath = !empty($publication["name"]) ? "uploads/publications/" . $publication["name"] : "";
+        $attestationPath = !empty($attestation["name"]) ? "uploads/attestations/" . $attestation["name"] : "";
+        $rapportPath     = !empty($rapport["name"])     ? "uploads/rapports/" . $rapport["name"] : "";
     
         // Build the SQL UPDATE query dynamically based on which file paths are present
 
@@ -104,9 +104,15 @@ class PublicationModel extends Dbh {
             $stmt->bindParam(':type', $type);
             $stmt->bindParam(':numero', $numero);
             $stmt->bindParam(':volume', $volume);
-            $stmt->bindParam(':publicationPath', $publicationPath);
-            $stmt->bindParam(':attestationPath', $attestationPath);
-            $stmt->bindParam(':rapportPath', $rapportPath);
+            if (!empty($publicationPath)) {
+                $stmt->bindParam(':publicationPath', $publicationPath);
+            }
+            if (!empty($attestationPath)) {
+                $stmt->bindParam(':attestationPath', $attestationPath);
+            }
+            if (!empty($rapportPath)) {
+                $stmt->bindParam(':rapportPath', $rapportPath);
+            }
     
             $stmt->execute();
         } catch (PDOException $e) {
