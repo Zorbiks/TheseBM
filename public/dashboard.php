@@ -44,29 +44,6 @@ $view = new DashboardView();
                     <div class="journal">
                         <h3>Journalisation</h3>
                         <?php $view->renderJournal(); ?>
-
-                        <!-- <div class="card">
-                            <div class="card-body py-0">
-                                <div class="event py-2">
-                                    <span class="fw-bold">Ahmad Mohammed</span>,
-                                    <span class="fw-bold text-primary">a ajouté</span>
-                                    <span>Lorem Ipsum Dolor Sit Amet Consectetur Adipiscing Elit Integer Nec Odio. Praesent Libero</span>
-                                    <span class="fw-bold text-primary">2025-4-15 17:40:22</span>
-                                </div>
-                                <div class="event py-2">
-                                    <span class="fw-bold">Mahmoud Ali</span>,
-                                    <span class="text-warning fw-bold">a modifié</span>
-                                    <span>Sed Cursus Ante Dapibus Diam. Sed Nisi Nulla Quis Sem At Nibh Elementum Imperdiet Duis Sagittis Ipsum</span>
-                                    <span class="fw-bold text-body-tertiary">2025-4-17 9:12:01</span>
-                                </div>
-                                <div class="event py-2">
-                                    <span class="fw-bold">Oussama Sayed</span>,
-                                    <span class="text-danger fw-bold">a supprimé</span>
-                                    <span>Fusce Nec Tellus Sed Augue Semper Porta Mauris Massa Vestibulum Lacinia Arcu Eget Nulla</span>
-                                    <span class="fw-bold text-body-tertiary">2025-4-24 10:10:00</span>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </main>
