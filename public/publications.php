@@ -58,14 +58,10 @@
                                                     <input type="text" class="form-control" id="auteurs" name="auteurs">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="lieu" class="form-label">Lieu *</label>
-                                                    <input type="text" class="form-control" id="lieu" name="lieu">
-                                                </div>
-                                                <div class="mb-3">
                                                     <label for="doi" class="form-label">DOI *</label>
                                                     <input type="text" class="form-control" id="doi" name="doi">
                                                 </div>
-                                                <div class="flex-grow-1">
+                                                <div class="flex-grow-1 mb-3">
                                                     <label for="date" class="form-label">Date *</label>
                                                     <input type="number" min="1970" class="form-control" id="date" name="date">
                                                 </div>
@@ -79,8 +75,12 @@
                                                         <option value="Journal">Journal</option>
                                                     </select>
                                                 </div>
+                                                <div class="mb-3" id="lieu-wrapper">
+                                                    <label for="lieu" class="form-label">Lieu</label>
+                                                    <input type="text" class="form-control" id="lieu" name="lieu">
+                                                </div>
                                                 <div class="d-flex gap-3 mb-3">
-                                                    <div class="flex-grow-1">
+                                                    <div class="flex-grow-1" id="numero-wrapper">
                                                         <label for="numero" class="form-label">Numéro</label>
                                                         <input type="number" class="form-control" id="numero" name="numero" min="1" max="999999">
                                                     </div>
@@ -140,18 +140,40 @@
                                     const currentYear = new Date().getFullYear();
                                     dateInput.setAttribute('max', currentYear);
 
-                                    // Activate volume only on journal type publication
+                                    // Activate volume only on journal & chapitre publication types
                                     const volumeWrapper = document.getElementById('volume-wrapper');
+                                    const numeroWrapper = document.getElementById('numero-wrapper');
                                     volumeWrapper.style.display = 'none';
+                                    numeroWrapper.style.display = 'none';
+                                    volumeInput.setAttribute('disabled', '');
+                                    numeroInput.setAttribute('disabled', '');
                                     typeInput.addEventListener('change', function() {
-                                        if (typeInput.value === 'Journal') {
+                                        if (typeInput.value === 'Journal' || typeInput.value === 'Chapitre') {
                                             volumeInput.removeAttribute('disabled');
+                                            numeroInput.removeAttribute('disabled');
                                             volumeWrapper.style.display = 'block';
+                                            numeroWrapper.style.display = 'block';
                                         } else {
                                             volumeInput.setAttribute('disabled', '');
+                                            numeroInput.setAttribute('disabled', '');
                                             volumeWrapper.style.display = 'none';
+                                            numeroWrapper.style.display = 'none';
                                         }
                                     })
+
+                                    // Activate location only on conference/communications publication types
+                                    const lieuWrapper = document.getElementById('lieu-wrapper');
+                                    lieuWrapper.style.display = 'none';
+                                    lieuInput.setAttribute('disabled', '');
+                                    typeInput.addEventListener('change', function() {
+                                        if (typeInput.value === 'Conférence' || typeInput.value === 'Communication') {
+                                            lieuInput.removeAttribute('disabled');
+                                            lieuWrapper.style.display = 'block';
+                                        } else {
+                                            lieuInput.setAttribute('disabled', '');
+                                            lieuWrapper.style.display = 'none';
+                                        }
+                                    });
 
                                     // Modify modal behavior when adding a publication
                                     const addBtn = document.getElementById('add-btn');

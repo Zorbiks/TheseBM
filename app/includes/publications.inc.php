@@ -32,6 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
     if (empty($volume)) {
         $volume = "-";
     }
+    if (empty($lieu)) {
+        $lieu = "-";
+    }
 
     // Add new publication
     if ($action === "add") {
