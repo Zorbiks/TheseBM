@@ -17,7 +17,7 @@ class DashboardModel extends Dbh {
             $dbh = $this->connect();
 
             // Define publication types to count
-            $types = ["conference", "chapitre", "communication"];
+            $types = ["conference", "chapitre", "communication", "journal"];
             $stats = [];
 
             $stmt = $dbh->prepare("SELECT COUNT(*) AS total FROM publications WHERE type = :type");

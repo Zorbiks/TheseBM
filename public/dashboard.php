@@ -30,8 +30,8 @@ $view = new DashboardView();
                                 <div class="col-12">
                                     <div class="card text-center h-100">
                                         <div class="card-body d-flex flex-column justify-content-center">
-                                            <div class="fw-bold fs-5 mb-5">Publications</div>
-                                            <div class="row">
+                                            <div class="fw-bold fs-5 mb-4">Statistiques Sur Les Publications</div>
+                                            <div class="row gap-2">
                                                 <?php $view->renderPublicationStats(); ?>
                                             </div>
                                         </div>
