@@ -1,6 +1,6 @@
 <div class="flex-shrink-0">
     <nav
-        class="position-fixed d-flex flex-column justify-content-between vh-100 z-1 position-relative text-light shadow px-3 pt-5">
+        class="position-fixed d-flex flex-column justify-content-between vh-100 z-1 position-relative text-light shadow px-md-3 pt-5">
         <ul class="list-unstyled pt-5">
             <?php
             // Display navigation links based on the user's role
