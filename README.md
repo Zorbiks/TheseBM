@@ -4,6 +4,7 @@
 
 - [Getting Started](#getting-started)
 - [Importing Database in PHPMyAdmin](#importing-database-in-phpmyadmin)
+- [Features](#features)
 
 ---
 
@@ -45,3 +46,22 @@ DocumentRoot "/home/user/www"
 4. Scroll down to the bottom of the page and click the **Import** button.
 
 ![](screenshot-import-database-2.jpg)
+
+---
+
+## Features
+
+Features for professor's account
+- Add, edit, or delete doctoral student accounts
+- Download attestations, publications, and reports
+- View publications directly in the browser
+- Access a dashboard with statistics and journal entries
+- Approve or reject new account registration requests
+- Download multiple publications in bulk
+- Export the publications table in CSV format
+- Search across all publications
+
+Features for doctoral student's account
+- Add, edit or delete a publication
+- Search their own publications only
+
